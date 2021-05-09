@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "214222718508",
+    "project_id": "driveeasy-f0915",
+    "storage_bucket": "driveeasy-f0915.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214222718508:android:c01bdce2b32aa936ca7389",
+        "android_client_info": {
+          "package_name": "com.example.driveeasy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214222718508-bt3jtm1db3cfn81fc6u36b4lb9m5g9vv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNYx9Hf9Id2Y2zccuTtbw6cUjmxPDe7U0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214222718508-bt3jtm1db3cfn81fc6u36b4lb9m5g9vv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
