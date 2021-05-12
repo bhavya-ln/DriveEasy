@@ -28,6 +28,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
 
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp" />
@@ -38,6 +39,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -45,7 +47,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
 
-            android:id="@+id/user"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp" />
@@ -56,6 +58,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -64,7 +67,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
 
-            android:id="@+id/pass"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
@@ -76,6 +79,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/confirmpass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -84,7 +88,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
 
-            android:id="@+id/confirmpass"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"

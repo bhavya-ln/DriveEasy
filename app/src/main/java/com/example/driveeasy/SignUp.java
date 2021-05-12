@@ -13,17 +13,18 @@ import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
     private static final String TAG="EmailPassword";
     private FirebaseAuth mAuth;
-    FirebaseDatabase rootNode;
-    DatabaseReference reference;
+//    FirebaseDatabase rootNode;
+//    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,20 +34,20 @@ public class SignUp extends AppCompatActivity {
     }
     public void onStart() {
        Button next=findViewById(R.id.next);
-       EditText name=findViewById(R.id.name);
-       EditText user=findViewById(R.id.user);
-       EditText pass=findViewById(R.id.pass);
-       EditText confirmpass=findViewById(R.id.confirmpass);
+        TextInputLayout name=findViewById(R.id.name);
+        TextInputLayout user=findViewById(R.id.user);
+        TextInputLayout pass=findViewById(R.id.pass);
+        TextInputLayout confirmpass=findViewById(R.id.confirmpass);
 
         super.onStart();
         next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    rootNode= FirebaseDatabase.getInstance();
-                    reference=rootNode.getReference("name");
-                    UserHelperClass HelperClass = new UserHelperClass(name.getText().toString(),user.getText().toString(),pass.getText().toString(),confirmpass.getText().toString());
-                    createAccount(name.getText().toString(),user.getText().toString(),pass.getText().toString());
-
+//                    rootNode= FirebaseDatabase.getInstance();
+//                    reference=rootNode.getReference("name");
+//                    UserHelperClass HelperClass = new UserHelperClass(name.getText().toString(),user.getText().toString(),pass.getText().toString(),confirmpass.getText().toString());
+                    createAccount(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString());
+//                    reference.setValue(HelperClass);
                 }
             });
     }
@@ -66,9 +67,9 @@ public class SignUp extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(SignUp.this, "Authentication failed.",
+                            Toast.makeText(SignUp.this, task.getException().toString(),
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                            reload();
                         }
                     }
                 });
@@ -79,5 +80,10 @@ public class SignUp extends AppCompatActivity {
         startActivity(intent);
         finish();
 
+    }
+    private void reload(){
+        Intent intent = new Intent(SignUp.this, SignUp.class);
+        startActivity(intent);
+        finish();
     }
 }
