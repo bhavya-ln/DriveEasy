@@ -48,9 +48,18 @@ public class SignIn extends AppCompatActivity {
         sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createAccount(user.getText().toString(),pass.getText().toString());
+                signIn(user.getText().toString(),pass.getText().toString());
             }
         });
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignIn.this, SignUp.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         }
     }
     private void createAccount(String email, String password) {
