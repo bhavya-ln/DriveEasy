@@ -3,9 +3,13 @@ package com.example.driveeasy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -13,9 +17,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
 public class SignIn extends AppCompatActivity {
     private static final String TAG="EmailPassword";
     private FirebaseAuth mAuth;
+    private Button signup;
+    private Button sign;
+    private EditText user;
+    private EditText pass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,11 +34,23 @@ public class SignIn extends AppCompatActivity {
     }
     @Override
     public void onStart() {
+        sign=findViewById(R.id.sign);
+        signup=findViewById(R.id.signup);
+        user=findViewById(R.id.user);
+        pass=findViewById(R.id.pass);
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             reload();
+        }
+        else{
+        sign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAccount(user.getText().toString(),pass.getText().toString());
+            }
+        });
         }
     }
     private void createAccount(String email, String password) {
@@ -90,9 +111,14 @@ public class SignIn extends AppCompatActivity {
         // [END send_email_verification]
     }
 
-    private void reload() { }
+    private void reload() {
+
+    }
 
     private void updateUI(FirebaseUser user) {
+            Intent intent = new Intent(SignIn.this, MainActivity.class);
+            startActivity(intent);
+            finish();
 
     }
 }
