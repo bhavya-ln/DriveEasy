@@ -17,14 +17,14 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
     private static final String TAG="EmailPassword";
     private FirebaseAuth mAuth;
-//    FirebaseDatabase rootNode;
-//    DatabaseReference reference;
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +43,13 @@ public class SignUp extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    rootNode= FirebaseDatabase.getInstance();
-//                    reference=rootNode.getReference("name");
-//                    UserHelperClass HelperClass = new UserHelperClass(name.getText().toString(),user.getText().toString(),pass.getText().toString(),confirmpass.getText().toString());
+                    if(pass.getEditText().getText().toString() != confirmpass.getEditText().getText().toString())
+                    {reload();}
+                    rootNode= FirebaseDatabase.getInstance();
+                    reference=rootNode.getReference("name");
+                    UserHelperClass HelperClass = new UserHelperClass(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString(),confirmpass.getEditText().getText().toString());
                     createAccount(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString());
-//                    reference.setValue(HelperClass);
+                    reference.setValue(HelperClass);
                 }
             });
     }
