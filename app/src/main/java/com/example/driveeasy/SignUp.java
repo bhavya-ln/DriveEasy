@@ -37,7 +37,7 @@ public class SignUp extends AppCompatActivity {
         TextInputLayout name=findViewById(R.id.name);
         TextInputLayout user=findViewById(R.id.user);
         TextInputLayout pass=findViewById(R.id.pass);
-        TextInputLayout confirmpass=findViewById(R.id.confirmpass);
+        TextInputLayout phone=findViewById(R.id.phone);
 
         super.onStart();
         next.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +46,7 @@ public class SignUp extends AppCompatActivity {
 
                     rootNode= FirebaseDatabase.getInstance();
                     reference=rootNode.getReference(name.getEditText().getText().toString());
-                    UserHelperClass HelperClass = new UserHelperClass(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString(),confirmpass.getEditText().getText().toString());
+                    UserHelperClass HelperClass = new UserHelperClass(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString(),phone.getEditText().getText().toString());
                     createAccount(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString());
                     reference.setValue(HelperClass);
                 }

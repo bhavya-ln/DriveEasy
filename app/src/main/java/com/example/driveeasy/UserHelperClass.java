@@ -1,15 +1,15 @@
 package com.example.driveeasy;
 
 public class UserHelperClass {
-    String name, user, pass, confirmpass;
+    String name, user, pass, phone;
     public UserHelperClass() {
 
     }
-    public UserHelperClass(String name, String user, String pass, String confirmpass) {
+    public UserHelperClass(String name, String user, String pass, String phone) {
         this.name = name;
         this.user = user;
         this.pass = pass;
-        this.confirmpass = confirmpass;
+        this.phone = phone;
     }
 
     public String getName() {
@@ -36,11 +36,11 @@ public class UserHelperClass {
         this.pass = pass;
     }
 
-    public String getConfirmpass() {
-        return confirmpass;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setConfirmpass(String confirmpass) {
-        this.confirmpass = confirmpass;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
