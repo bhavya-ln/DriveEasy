@@ -43,10 +43,9 @@ public class SignUp extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(pass.getEditText().getText().toString() != confirmpass.getEditText().getText().toString())
-                    {reload();}
+
                     rootNode= FirebaseDatabase.getInstance();
-                    reference=rootNode.getReference("name");
+                    reference=rootNode.getReference(name.getEditText().getText().toString());
                     UserHelperClass HelperClass = new UserHelperClass(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString(),confirmpass.getEditText().getText().toString());
                     createAccount(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString());
                     reference.setValue(HelperClass);
