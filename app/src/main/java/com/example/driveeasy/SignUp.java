@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,6 +38,7 @@ public class SignUp extends AppCompatActivity {
         TextInputLayout user=findViewById(R.id.user);
         TextInputLayout pass=findViewById(R.id.pass);
         TextInputLayout phone=findViewById(R.id.phone);
+        FloatingActionButton back = findViewById(R.id.floatingActionButton);
 
         super.onStart();
         next.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +52,14 @@ public class SignUp extends AppCompatActivity {
                     reference.setValue(HelperClass);
                 }
             });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUp.this, SignIn.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void createAccount(String name,String email, String password) {
