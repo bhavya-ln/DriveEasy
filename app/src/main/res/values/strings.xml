@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">DriveEasy</string>
+    <string name="Open">DriveEasy</string>
+    <string name="Close">DriveEasy</string>
+
 </resources>
