@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         logo.setAnimation(topAnim);
         slogan.setAnimation(bottomAnim);
-        int DELAY = 5000;
+        int DELAY = 2000;
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

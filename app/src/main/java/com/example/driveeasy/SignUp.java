@@ -86,7 +86,7 @@ public class SignUp extends AppCompatActivity {
         // [END create_user_with_email]
     }
     private void updateUI(FirebaseUser user) {
-        Intent intent = new Intent(SignUp.this, Dashboard.class);
+        Intent intent = new Intent(SignUp.this, OTP.class);
         startActivity(intent);
         finish();
 
