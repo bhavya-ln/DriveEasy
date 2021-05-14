@@ -24,9 +24,6 @@ public class Dashboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toolbar=findViewById(R.id.toolbar);
-        setActionBar(toolbar);
-
         setContentView(R.layout.activity_dashboard2);
         drawerLayout=findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.Open,R.string.Close);
