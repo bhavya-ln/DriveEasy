@@ -42,6 +42,27 @@
                 android:layout_height="40dp"
                 android:text="Dashboard" />
 
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="287dp" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="104dp"
+                android:max="10"
+                android:progress="3" />
+
+            <Button
+                android:id="@+id/Proceed"
+                android:layout_marginLeft="70dp"
+                android:paddingHorizontal="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:text="Proceed" />
+
 
         </LinearLayout>
 
