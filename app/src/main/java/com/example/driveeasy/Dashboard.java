@@ -8,10 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.DatePicker;
 import android.widget.SearchView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -26,7 +24,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
-import java.util.TimeZone;
 
 public class Dashboard extends AppCompatActivity {
     ActionBarDrawerToggle toggle;
@@ -53,6 +50,7 @@ public class Dashboard extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.Open,R.string.Close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -81,6 +79,8 @@ public class Dashboard extends AppCompatActivity {
                     startActivity(intent);
 
                 }
+
+
 
                 return true;
             }
