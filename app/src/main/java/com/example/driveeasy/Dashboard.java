@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.SearchView;
@@ -31,6 +33,7 @@ public class Dashboard extends AppCompatActivity {
     Toolbar toolbar;
     Calendar calendar;
     public Button proceed;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +59,21 @@ public class Dashboard extends AppCompatActivity {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                if(calendarView.getDate()<System.currentTimeMillis()){
+                if(System.currentTimeMillis()-calendarView.getDate()>86400000){
                     calendarView.setMinDate(System.currentTimeMillis());
                 }
             }
         });
-
+//        proceed.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(System.currentTimeMillis()-calendarView.getDate()>10000000)
+//                {
+//                    calendarView.setMinDate(System.currentTimeMillis());
+//
+//                }
+//            }
+//        });
         nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
