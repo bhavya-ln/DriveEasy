@@ -20,22 +20,36 @@
             android:textStyle="bold"
             android:textSize="40dp"/>
         <EditText
+            android:id="@+id/MobileNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Enter your phone number"
             android:layout_marginTop="30dp"
-            android:textColor="@color/black"
+            android:textColor="@color/ColourText"
             android:textStyle="bold"
             android:textSize="20dp"
             android:inputType="phone"/>
-        <Button
-            android:id="@+id/getOTP"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="30dp"
-            android:text="Get OTP">
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/getOTP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                android:text="Get OTP"/>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
 
-        </Button>
+
+        </FrameLayout>
+
+
+
 
 
 
