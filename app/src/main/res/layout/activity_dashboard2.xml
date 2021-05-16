@@ -2,15 +2,15 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:theme="@android:style/Theme.NoTitleBar"
-    android:layout_width="match_parent"
     android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:openDrawer="start"
+    android:theme="@android:style/Theme.NoTitleBar"
     tools:actionBarNavMode="list"
-    tools:context=".Dashboard">
+    tools:context=".Dashboard"
+    tools:openDrawer="start">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -21,41 +21,84 @@
         app:menu="@menu/menu" />
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
 
-        <LinearLayout
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#042023"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Helloo"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            />
+
+
+        <CalendarView
+            android:id="@+id/calendarView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="287dp"
+            android:layout_gravity="center"
+            android:background="#042023" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Helloo"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            />
+
+        <TimePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/timePicker"
+            android:background="#042023" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Helloo"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="104dp"
+            android:max="10"
+            android:progress="3" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Helloo"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:id="@+id/Proceed"
 
 
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:layout_gravity="center"
+            android:text="Proceed" />
 
 
-
-            <CalendarView
-                android:id="@+id/calendarView"
-                android:layout_width="match_parent"
-                android:layout_height="287dp"
-                android:layout_gravity="center"/>
-
-            <SeekBar
-                android:id="@+id/seekBar"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="match_parent"
-                android:layout_height="104dp"
-                android:max="10"
-                android:progress="3" />
-
-            <Button
-                android:id="@+id/Proceed"
-
-
-                android:layout_width="wrap_content"
-                android:layout_height="37dp"
-                android:layout_gravity="center"
-                android:text="Proceed" />
-
-
-        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

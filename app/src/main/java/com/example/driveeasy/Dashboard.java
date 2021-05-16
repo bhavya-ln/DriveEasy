@@ -5,14 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.SearchView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -33,6 +32,7 @@ public class Dashboard extends AppCompatActivity {
     Toolbar toolbar;
     Calendar calendar;
     public Button proceed;
+    TimePicker timePicker;
 
 
     @Override
@@ -54,6 +54,21 @@ public class Dashboard extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+//        TimePicker timePicker =(TimePicker)findViewById(R.id.timePicker);
+//        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+//            @Override
+//            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                    timePicker.setHour(hourOfDay);
+//
+//                    timePicker.setMinute(minute);
+//                }
+//            }
+//        });
+
+
+
 
         CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
