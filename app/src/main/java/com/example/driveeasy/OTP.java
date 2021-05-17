@@ -62,9 +62,11 @@ public class OTP extends AppCompatActivity {
                             public void onCodeSent(@NonNull String verificationID, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                 progressBar.setVisibility(View.GONE);
                                 getOTP.setVisibility(View.VISIBLE);
+
                                 Intent intent= new Intent(getApplicationContext(),VerifyOTP.class);
                                 intent.putExtra("mobile",MobileNo.getText().toString());
                                 intent.putExtra("verificationId",verificationID);
+                                Toast.makeText(OTP.this,forceResendingToken.toString(),Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
 
                             }

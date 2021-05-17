@@ -48,7 +48,13 @@ public class SignIn extends AppCompatActivity {
         sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn(user.getText().toString(),pass.getText().toString());
+                if(user.getText().toString().isEmpty() || pass.getText().toString().isEmpty())
+                {
+                    reload();
+                }
+                else {
+                    signIn(user.getText().toString(), pass.getText().toString());
+                }
             }
         });
         signup.setOnClickListener(new View.OnClickListener() {

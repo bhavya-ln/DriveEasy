@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 //import com.google.api.core.ApiFuture;
 //import com.google.auth.oauth2.GoogleCredentials;
@@ -46,6 +47,7 @@ class SearchResultsActivity extends Activity {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
+            Toast.makeText(SearchResultsActivity.this,query,Toast.LENGTH_SHORT).show();
 
             //use the query to search your data somehow
 //            ApiFuture<QuerySnapshot> query = db.collection("Location").get();

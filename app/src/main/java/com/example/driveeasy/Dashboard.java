@@ -79,6 +79,7 @@ public class Dashboard extends AppCompatActivity {
                 }
             }
         });
+        calendarView.canScrollHorizontally(10);
 //        proceed.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

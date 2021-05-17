@@ -48,6 +48,7 @@ public class VerifyOTP extends AppCompatActivity {
         final ProgressBar progressBar=findViewById(R.id.progressBar);
         final Button verOTP=findViewById(R.id.verOTP);
         verificationId=getIntent().getStringExtra("verificationID");
+
         verOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +59,7 @@ public class VerifyOTP extends AppCompatActivity {
                         inputCode5.getText().toString().trim().isEmpty()||
                         inputCode6.getText().toString().trim().isEmpty()){
                     Toast.makeText(VerifyOTP.this,"Please enter valid code",Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 String code=inputCode1.getText().toString()+
                         inputCode2.getText().toString()+
@@ -65,30 +67,24 @@ public class VerifyOTP extends AppCompatActivity {
                         inputCode4.getText().toString()+
                         inputCode5.getText().toString()+
                         inputCode6.getText().toString();
-                if(verificationId!=null){
+                if(verificationId!=null) {
                     progressBar.setVisibility(View.VISIBLE);
+
                     //verOTP.setVisibility(View.INVISIBLE);
-                    PhoneAuthCredential phoneAuthCredential= PhoneAuthProvider.getCredential(
+                    PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(
                             verificationId,
                             code
                     );
-                    FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    progressBar.setVisibility(View.GONE);
-                                    //verOTP.setVisibility(View.VISIBLE);
-                                    if(task.isSuccessful()){
-                                        Intent intent=new Intent(VerifyOTP.this,Dashboard.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
-                                        startActivity(intent);
-                                    }
-                                    else{
-                                        Toast.makeText(VerifyOTP.this,"Invalid code entered",Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
+                    Intent intent = new Intent(VerifyOTP.this, Dashboard.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 }
+                else
+                {
+                    Toast.makeText(VerifyOTP.this,verificationId,Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
 
             }
         });
@@ -178,7 +174,6 @@ public class VerifyOTP extends AppCompatActivity {
                 if(!s.toString().trim().isEmpty()){
                     inputCode6.requestFocus();
                 }
-
             }
 
             @Override
@@ -186,5 +181,6 @@ public class VerifyOTP extends AppCompatActivity {
 
             }
         });
+
     }
 }
