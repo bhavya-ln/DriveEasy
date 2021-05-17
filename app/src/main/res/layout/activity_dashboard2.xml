@@ -74,8 +74,9 @@
 
         <TextView
             android:layout_width="wrap_content"
+            android:id="@+id/text"
             android:layout_height="wrap_content"
-            android:text="Helloo"
+            android:text="0"
             android:textSize="30dp"
             android:layout_gravity="center"
             />

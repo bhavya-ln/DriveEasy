@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.SearchView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -67,6 +69,26 @@ public class Dashboard extends AppCompatActivity {
 //            }
 //        });
 
+        SeekBar seekBar = findViewById(R.id.seekBar);
+        TextView text = findViewById(R.id.text);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                text.setText(""+seekBar.getProgress()+" Days");
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
 
 
 
@@ -79,7 +101,7 @@ public class Dashboard extends AppCompatActivity {
                 }
             }
         });
-        calendarView.canScrollHorizontally(10);
+      //  calendarView.canScrollHorizontally(10);
 //        proceed.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
