@@ -24,7 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
         private static final String TAG="EmailPassword";
         private FirebaseAuth mAuth;
         FirebaseDatabase rootNode;
-        DatabaseReference reference;
+        DatabaseReference reference,ref;
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,12 @@ import com.google.firebase.database.FirebaseDatabase;
                     public void onClick(View v) {
 
                         rootNode= FirebaseDatabase.getInstance();
-                        reference=rootNode.getReference(name.getEditText().getText().toString());
+                        reference=rootNode.getReference("Users");
+                        ref=reference.child(name.getEditText().getText().toString());
                         UserHelperClass HelperClass = new UserHelperClass(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString(),phone.getEditText().getText().toString());
-                        createAccount(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString());
-                        reference.setValue(HelperClass);
+                        createAccount(user.getEditText().getText().toString(),pass.getEditText().getText().toString());
+                        ref.setValue(HelperClass);
+
                     }
                 });
             back.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +65,7 @@ import com.google.firebase.database.FirebaseDatabase;
             });
         }
 
-        private void createAccount(String name,String email, String password) {
+        private void createAccount(String email, String password) {
             // [START create_user_with_email]
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

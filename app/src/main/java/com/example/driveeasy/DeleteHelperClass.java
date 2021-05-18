@@ -1,69 +1,64 @@
 package com.example.driveeasy;
 
 public class DeleteHelperClass {
-    String loc, b1, b2, d1,d2,c1,c2;
+    String Name, NoS, NumPlate, FT,ImgID,Price;
     public DeleteHelperClass() {
 
     }
-    public DeleteHelperClass(String loc, String b1, String b2, String d1,String d2,String c1,String c2) {
-        this.loc = loc;
-        this.b1 = b1;
-        this.b2 = b2;
-        this.d1 = d1;
-        this.d2 = d2;
-        this.c1 = c1;
-        this.c2 = c2;
+    public DeleteHelperClass(String Name, String NoS, String NumPlate, String FT,String ImgID,String Price) {
+        this.Name = Name;
+        this.NoS = NoS;
+        this.NumPlate = NumPlate;
+        this.FT = FT;
+        this.ImgID = ImgID;
+        this.Price = Price;
+
     }
 
-    public String getLoc() {
-        return loc;
+    public String getName() {
+        return Name;
     }
 
-    public void setLoc(String loc) {
-        this.loc = loc;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
-    public String getB1() {
-        return b1;
+    public String getNoS() {
+        return NoS;
     }
 
-    public void setB1(String b1) {
-        this.b1 = b1;
+    public void setNoS(String NoS) {
+        this.NoS = NoS;
     }
 
-    public String getB2() {
-        return b2;
+    public String getNumPlate() {
+        return NumPlate;
     }
 
-    public void setB2(String b1) { this.b2 = b2; }
+    public void setNumPlate(String NoS) { this.NumPlate = NumPlate; }
 
-    public String getD1() {
-        return d1;
-    }
-
-    public void setD1(String d1) {
-        this.d1 = d1;
+    public String getFT() {
+        return FT;
     }
 
-    public String getD2() {
-        return d2;
+    public void setFT(String FT) {
+        this.FT = FT;
     }
 
-    public void setD2(String d2) {
-        this.d2 = d2;
-    }
-    public String getc1() {
-        return c1;
+    public String getImgID() {
+        return ImgID;
     }
 
-    public void setC1(String c1) {
-        this.c1 = c1;
+    public void setImgID(String ImgID) {
+        this.ImgID = ImgID;
     }
-    public String getC2() {
-        return c2;
+    public String getPrice() {
+        return Price;
     }
 
-    public void setC2(String c2) {
-        this.c2 = c2;
+    public void setPrice(String Price) {
+        this.Price = Price;
     }
-}
+
+    }
+
