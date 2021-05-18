@@ -16,6 +16,7 @@ public class Car {
 
 
     private String price;
+    private String imgID;
 
     public Car(){}
     public String getName()
@@ -63,6 +64,7 @@ public class Car {
 
 
 
+
     public String getType()
     {
         return type;
@@ -75,6 +77,11 @@ public class Car {
     public String getPrice()
     {
         return price;
+    }
+
+    public String getImgID()
+    {
+        return imgID;
     }
 
 

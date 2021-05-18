@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -38,6 +41,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
         holder.numplate.setText(car.getNumplate());
         holder.noS.setText(car.getNoS());
         holder.price.setText(car.getPrice());
+        Picasso.with(context).load(car.getImgID()).into(holder.imgID);
+
 
     }
 
@@ -48,6 +53,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name,noS,numplate,ft,type,price;
+        ImageView imgID;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -57,6 +63,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
             ft = itemView.findViewById(R.id.fuel);
             type = itemView.findViewById(R.id.type);
             price = itemView.findViewById(R.id.price);
+            imgID = itemView.findViewById(R.id.imgID);
 
         }
     }

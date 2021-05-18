@@ -50,4 +50,5 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:4.3.2'
 //    compile 'com.google.cloud:google-cloud-firestore:1.32.0'
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.squareup.picasso:picasso:2.5.0'
 }
