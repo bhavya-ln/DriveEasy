@@ -1,6 +1,5 @@
 
 
-
 package com.example.driveeasy;
 
 import androidx.annotation.NonNull;
@@ -29,6 +28,9 @@ public class Deleteafterupdate extends AppCompatActivity {
     FirebaseDatabase rootNode;
     DatabaseReference reference;
 
+    DatabaseReference ref;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +39,14 @@ public class Deleteafterupdate extends AppCompatActivity {
     }
 
     public void onStart() {
-        TextInputLayout loc = findViewById(R.id.Location);
-        TextInputLayout b1 = findViewById(R.id.B1);
-        TextInputLayout b2 = findViewById(R.id.B2);
-        TextInputLayout d1 = findViewById(R.id.D1);
-        TextInputLayout d2 = findViewById(R.id.D2);
-        TextInputLayout c1 = findViewById(R.id.C1);
-        TextInputLayout c2 = findViewById(R.id.C2);
+        TextInputLayout name = findViewById(R.id.Name);
+
+        TextInputLayout b1 = findViewById(R.id.NoS);
+        TextInputLayout b2 = findViewById(R.id.NumPlate);
+        TextInputLayout d1 = findViewById(R.id.FT);
+        TextInputLayout d2 = findViewById(R.id.ToC);
+        TextInputLayout c1 = findViewById(R.id.Price);
+        //TextInputLayout c2 = findViewById(R.id.C2);
         Button next=findViewById(R.id.next);
         FloatingActionButton back = findViewById(R.id.floatingActionButton);
 
@@ -53,10 +56,12 @@ public class Deleteafterupdate extends AppCompatActivity {
             public void onClick(View v) {
 
                 rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference(loc.getEditText().getText().toString());
-                DeleteHelperClass HelperClass = new DeleteHelperClass(loc.getEditText().getText().toString(),b1.getEditText().getText().toString(), b2.getEditText().getText().toString(), d1.getEditText().getText().toString(), d2.getEditText().getText().toString(),c1.getEditText().getText().toString(),c2.getEditText().getText().toString());
-                createAccount(loc.getEditText().getText().toString(), "nolol");
-                reference.setValue(HelperClass);
+                reference = rootNode.getReference("Cars");
+                //ref= reference.getDatabase().getReference(name.getEditText().getText().toString());
+                ref=reference.child(name.getEditText().getText().toString());
+                DeleteHelperClass HelperClass = new DeleteHelperClass(name.getEditText().getText().toString(),b1.getEditText().getText().toString(), b2.getEditText().getText().toString(), d1.getEditText().getText().toString(), d2.getEditText().getText().toString(),c1.getEditText().getText().toString());
+                ref.setValue(HelperClass);
+                createAccount(name.getEditText().getText().toString(), "nolol");
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
