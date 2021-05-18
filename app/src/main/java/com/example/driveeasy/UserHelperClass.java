@@ -6,12 +6,12 @@ public class UserHelperClass {
     public UserHelperClass() {
 
     }
-
-    public UserHelperClass(String name, String user, String pass, String phone) {
+//, String phone
+    public UserHelperClass(String name, String user, String pass) {
         this.name = name;
         this.user = user;
         this.pass = pass;
-        this.phone = phone;
+//        this.phone = phone;
     }
 
     public String getName() {
@@ -38,12 +38,12 @@ public class UserHelperClass {
         this.pass = pass;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+//    public String getPhone() {
+//        return phone;
+//    }
+//
+//    public void setPhone(String phone) {
+//        this.phone = phone;
+//    }
 
 }

@@ -1,14 +1,14 @@
 package com.example.driveeasy;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,7 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
             TextInputLayout name=findViewById(R.id.name);
             TextInputLayout user=findViewById(R.id.user);
             TextInputLayout pass=findViewById(R.id.pass);
-            TextInputLayout phone=findViewById(R.id.phone);
+//            TextInputLayout phone=findViewById(R.id.phone);
             FloatingActionButton back = findViewById(R.id.floatingActionButton);
 
             super.onStart();
@@ -49,7 +49,8 @@ import com.google.firebase.database.FirebaseDatabase;
                         rootNode= FirebaseDatabase.getInstance();
                         reference=rootNode.getReference("Users");
                         ref=reference.child(name.getEditText().getText().toString());
-                        UserHelperClass HelperClass = new UserHelperClass(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString(),phone.getEditText().getText().toString());
+                        UserHelperClass HelperClass = new UserHelperClass(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString());
+//                        ,phone.getEditText().getText().toString()
                         createAccount(user.getEditText().getText().toString(),pass.getEditText().getText().toString());
                         ref.setValue(HelperClass);
 
