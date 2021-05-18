@@ -1,12 +1,9 @@
 package com.example.driveeasy;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -166,6 +163,14 @@ import java.util.Calendar;
             drawerLayout.addDrawerListener(toggle);
             toggle.syncState();
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            proceed.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(com.example.driveeasy.Dashboard.this, Home.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
 
     //        TimePicker timePicker =(TimePicker)findViewById(R.id.timePicker);
     //        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
@@ -264,6 +269,8 @@ import java.util.Calendar;
             finish();
 
         }
+
+
     }
 
 
