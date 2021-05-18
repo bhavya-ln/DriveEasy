@@ -2,9 +2,11 @@ package com.example.driveeasy;
 
 public class UserHelperClass {
     String name, user, pass, phone;
+
     public UserHelperClass() {
 
     }
+
     public UserHelperClass(String name, String user, String pass, String phone) {
         this.name = name;
         this.user = user;
@@ -43,4 +45,5 @@ public class UserHelperClass {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
 }

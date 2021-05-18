@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:theme="@android:style/Theme.NoTitleBar"
     tools:actionBarNavMode="list"
-    tools:context=".Dashboard"
+    tools:context=".Dashboard$Dashboard"
     tools:openDrawer="start">
 
     <com.google.android.material.navigation.NavigationView
@@ -24,91 +24,96 @@
         android:layout_height="match_parent"
         android:background="#042023"
         android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello"
-        android:textSize="30dp"
-        android:layout_gravity="center"
-        />
-
-
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="287dp"
-        android:layout_gravity="center"
-        android:background="#042023"
-        android:fadeScrollbars="true"
-        android:isScrollContainer="true" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#042023"
-        android:orientation="vertical">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Helloo"
-            android:textSize="30dp"
-            android:layout_gravity="center"
-            />
-
-        <TimePicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/timePicker"
-            android:background="#042023" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/text"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="30dp"
-            android:layout_gravity="center"
-            />
-
-        <SeekBar
-            android:id="@+id/seekBar"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
+        <ListView
+            android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="104dp"
-            android:max="10"
-            android:progress="3" />
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Helloo"
+            android:text="Hello"
             android:textSize="30dp"
             android:layout_gravity="center"
             />
 
-        <Button
-            android:id="@+id/Proceed"
 
-
-            android:layout_width="wrap_content"
-            android:layout_height="37dp"
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="287dp"
             android:layout_gravity="center"
-            android:text="Proceed" />
+            android:background="#042023"
+            android:fadeScrollbars="true"
+            android:isScrollContainer="true" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
 
 
-    </LinearLayout>
-    </ScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#042023"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Helloo"
+                    android:textSize="30dp"
+                    android:layout_gravity="center"
+                    />
+
+                <TimePicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/timePicker"
+                    android:background="#042023" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hello"
+                    android:textSize="30dp"
+                    android:layout_gravity="center"
+                    />
+
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="104dp"
+                    android:max="12"
+                    android:progress="0" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text"
+                    android:text="0 days"
+                    android:textSize="30dp"
+                    android:layout_gravity="center"
+                    />
+
+                <Button
+                    android:id="@+id/Proceed"
+
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="37dp"
+                    android:layout_gravity="center"
+                    android:text="Proceed" />
+
+
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

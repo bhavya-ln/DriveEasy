@@ -14,15 +14,15 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     ImageView logo;
     TextView slogan;
-    Animation topAnim,bottomAnim;
+    Animation topAnim, bottomAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        topAnim = AnimationUtils.loadAnimation(this,R.anim.top_anim);
-        bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_anim);
+        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_anim);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_anim);
         logo = findViewById(R.id.logo);
         slogan = findViewById(R.id.slogan);
 
