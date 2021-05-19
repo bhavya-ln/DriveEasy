@@ -6,7 +6,7 @@ public class Car {
 
     private String noS;
 
-    private String numplate;
+    private String numPlate;
 
 
     private String ft;
@@ -41,7 +41,7 @@ public class Car {
 
     public String getNumplate()
     {
-        return numplate;
+        return numPlate;
     }
 
 //    public void setnumplate(String numplate)

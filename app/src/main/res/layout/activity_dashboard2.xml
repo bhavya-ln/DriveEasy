@@ -91,12 +91,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="104dp"
                     android:max="12"
+                    android:min="1"
                     android:progress="0" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/text"
-                    android:text="0 days"
+                    android:text="1 day"
                     android:textSize="30dp"
                     android:layout_gravity="center"
                     />

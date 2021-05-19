@@ -53,7 +53,7 @@ public  class SignUp extends AppCompatActivity {
 
                         rootNode= FirebaseDatabase.getInstance();
                         reference=rootNode.getReference("Users");
-                        ref=reference.child(name.getEditText().getText().toString());
+                        ref=reference.child("+91"+phone.getEditText().getText().toString());
                         UserHelperClass HelperClass = new UserHelperClass(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString(),phone.getEditText().getText().toString());
                         createAccount(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString());
                         ref.setValue(HelperClass);

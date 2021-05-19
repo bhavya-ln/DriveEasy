@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -40,12 +41,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Car car = cars.get(position);
-        holder.name.setText(car.getName());
+        holder.name.setText("Model: "+car.getName());
         holder.type.setText(car.getType());
         holder.ft.setText(car.getFt());
         holder.numplate.setText(car.getNumplate());
         holder.noS.setText(car.getNoS());
-        holder.price.setText(car.getPrice());
+        holder.price.setText("Rate per Hour: "+car.getPrice());
         Picasso.with(context).load(car.getImgID()).resize(260, 260).into(holder.imgID);
 //        holder.imgID.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -66,6 +67,20 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
         holder.imgID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseDatabase rootNode;
+                DatabaseReference reference,ref;
+                FirebaseAuth mAuth;
+                mAuth = FirebaseAuth.getInstance();
+                rootNode= FirebaseDatabase.getInstance();
+                reference=rootNode.getReference("Users");
+                ref=reference.child(mAuth.getCurrentUser().getPhoneNumber());
+                ref.child("selectedCar").setValue(car.getName());
+                ref.child("imgID").setValue(car.getImgID());
+                ref.child("ft").setValue(car.getFt());
+                ref.child("noS").setValue(car.getNoS());
+                ref.child("numPlate").setValue(car.getNumplate());
+                ref.child("price").setValue(car.getPrice());
+
                 Log.i("W4K","Click-"+position);
                 context.startActivity(new Intent(context,ItemScreen.class));
             }
