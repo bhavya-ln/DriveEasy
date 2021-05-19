@@ -47,8 +47,10 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.1.0-alpha05"
     implementation "androidx.navigation:navigation-ui-ktx:2.1.0-alpha05"
   //  implementation'com.firebaseui:firebase-ui-database:1.1.1'
+    implementation 'com.squareup.picasso:picasso:2.5.0'
     implementation 'com.firebaseui:firebase-ui-database:4.3.2'
 //    compile 'com.google.cloud:google-cloud-firestore:1.32.0'
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'com.squareup.picasso:picasso:2.5.0'
+    implementation "androidx.biometric:biometric:1.1.0"
+
 }
