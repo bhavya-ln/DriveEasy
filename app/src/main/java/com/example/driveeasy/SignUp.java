@@ -84,6 +84,7 @@ public  class SignUp extends AppCompatActivity {
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
+                                ref.child(name).removeValue();//removes child since loggin failed
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(com.example.driveeasy.SignUp.this, task.getException().toString(),
                                         Toast.LENGTH_SHORT).show();
