@@ -1,15 +1,20 @@
 package com.example.driveeasy;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -42,6 +47,29 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
         holder.noS.setText(car.getNoS());
         holder.price.setText(car.getPrice());
         Picasso.with(context).load(car.getImgID()).resize(260, 260).into(holder.imgID);
+//        holder.imgID.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseDatabase rootNode;
+//                DatabaseReference reference,ref;
+//                rootNode= FirebaseDatabase.getInstance();
+//                reference=rootNode.getReference("Users");
+//                ref=reference.child();
+//            }
+//        });
+        //            view = itemView;
+//            view.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                }
+//            });
+        holder.imgID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("W4K","Click-"+position);
+                context.startActivity(new Intent(context,ItemScreen.class));
+            }
+        });
 
 
     }
@@ -54,9 +82,9 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name,noS,numplate,ft,type,price;
         ImageView imgID;
+        public View view;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             name = itemView.findViewById(R.id.name);
             noS = itemView.findViewById(R.id.seats);
             numplate = itemView.findViewById(R.id.numberplate);
@@ -64,9 +92,19 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
             type = itemView.findViewById(R.id.type);
             price = itemView.findViewById(R.id.price);
             imgID = itemView.findViewById(R.id.imgID);
+//            view = itemView;
+//            view.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(com.example.driveeasy.CarAdapter.this, ItemScreen.class);
+//                    startActivity(intent);
+//                }
+//            });
 
         }
+
     }
+
 
 
 }

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -160,6 +161,19 @@ public class Home extends AppCompatActivity {
                 return true;
             }
         });
+//        recyclerView.addOnItemTouchListener(
+//                new RecyclerItemClickListener(context, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+//                    @Override public void onItemClick(View view, int position) {
+//                        // do whatever
+//                    }
+//
+//                    @Override public void onLongItemClick(View view, int position) {
+//                        // do whatever
+//                    }
+//                })
+//        );
+
+
     }
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -171,6 +185,7 @@ public class Home extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 Toast.makeText(com.example.driveeasy.Home.this,query,Toast.LENGTH_SHORT).show();
                 listView.setVisibility(View.GONE);
                 return false;
