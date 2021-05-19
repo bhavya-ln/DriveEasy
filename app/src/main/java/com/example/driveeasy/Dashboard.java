@@ -226,7 +226,9 @@ import java.util.Calendar;
                     int id = item.getItemId();
                     if(id== R.id.home)
                     {
-                        Toast.makeText(com.example.driveeasy.Dashboard.this,"Home",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(com.example.driveeasy.Dashboard.this, com.example.driveeasy.Home.class);
+                        startActivity(intent);
+                        finish();
                     }
                     else if(id== R.id.logout)
                     {
@@ -235,6 +237,10 @@ import java.util.Calendar;
                         Intent intent = new Intent(com.example.driveeasy.Dashboard.this, SignIn.class);
                         startActivity(intent);
 
+                    }
+                    else if(id == R.id.dashboard)
+                    {
+                        Toast.makeText(com.example.driveeasy.Dashboard.this,"Dashboard",Toast.LENGTH_SHORT).show();
                     }
 
 

@@ -3,6 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group>
+        <item
+            android:title="Dashboard"
+            android:id="@+id/dashboard"
+            />
     <item
         android:title="Home"
         android:id="@+id/home"

@@ -84,6 +84,12 @@ public class Home extends AppCompatActivity {
                     startActivity(intent);
 
                 }
+                else if(id == R.id.dashboard)
+                {
+                    Intent intent = new Intent(com.example.driveeasy.Home.this, com.example.driveeasy.Dashboard.class);
+                    startActivity(intent);
+                    finish();
+                }
 
 
 
