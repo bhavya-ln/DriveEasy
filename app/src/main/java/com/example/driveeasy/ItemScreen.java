@@ -1,14 +1,20 @@
 package com.example.driveeasy;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -22,8 +28,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ItemScreen extends AppCompatActivity {
     Context context;
+    ActionBarDrawerToggle toggle;
+    DrawerLayout drawerLayout;
     FirebaseDatabase rootNode;
-    DatabaseReference reference,ref,ref1;
+    DatabaseReference reference,ref;
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,11 +130,53 @@ public class ItemScreen extends AppCompatActivity {
         buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(com.example.driveeasy.ItemScreen.this, Home.class);
+                Intent intent = new Intent(com.example.driveeasy.ItemScreen.this, PaymentAuth.class);
                 startActivity(intent);
                 finish();
             }
         });
+        NavigationView nav_view= (NavigationView)findViewById(R.id.nav_view);
+        nav_view.bringToFront();
+        drawerLayout=findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(this,drawerLayout, R.string.Open, R.string.Close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int id = item.getItemId();
+                if(id== R.id.home)
+                {
+                    Intent intent = new Intent(com.example.driveeasy.ItemScreen.this, com.example.driveeasy.Home.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else if(id== R.id.logout)
+                {
+                    Toast.makeText(com.example.driveeasy.ItemScreen.this,"Logout",Toast.LENGTH_SHORT).show();
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(com.example.driveeasy.ItemScreen.this, SignIn.class);
+                    startActivity(intent);
+
+                }
+                else if(id == R.id.dashboard)
+                {
+                    Intent intent = new Intent(com.example.driveeasy.ItemScreen.this, com.example.driveeasy.Dashboard.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+
+
+                return true;
+            }
+        });
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return toggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
 }
