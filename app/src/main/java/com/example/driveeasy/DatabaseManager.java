@@ -11,7 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
-import android.widget.EditText;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Deleteafterupdate extends AppCompatActivity {
+public class DatabaseManager extends AppCompatActivity {
     private static final String TAG = "EmailPassword";
     private FirebaseAuth mAuth;
     FirebaseDatabase rootNode;
@@ -59,7 +59,7 @@ public class Deleteafterupdate extends AppCompatActivity {
                 reference = rootNode.getReference("Cars");
                 //ref= reference.getDatabase().getReference(name.getEditText().getText().toString());
                 ref=reference.child(name.getEditText().getText().toString());
-                DeleteHelperClass HelperClass = new DeleteHelperClass(name.getEditText().getText().toString(),b1.getEditText().getText().toString(), b2.getEditText().getText().toString(), d1.getEditText().getText().toString(), d2.getEditText().getText().toString(),c1.getEditText().getText().toString());
+                DatabaseHelperClass HelperClass = new DatabaseHelperClass(name.getEditText().getText().toString(),b1.getEditText().getText().toString(), b2.getEditText().getText().toString(), d1.getEditText().getText().toString(), d2.getEditText().getText().toString(),c1.getEditText().getText().toString());
                 ref.setValue(HelperClass);
                 createAccount(name.getEditText().getText().toString(), "nolol");
             }
@@ -67,7 +67,7 @@ public class Deleteafterupdate extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(com.example.driveeasy.Deleteafterupdate.this, SignIn.class);
+                Intent intent = new Intent(DatabaseManager.this, SignIn.class);
                 startActivity(intent);
                 finish();
             }
@@ -88,7 +88,7 @@ public class Deleteafterupdate extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(Deleteafterupdate.this, task.getException().toString(),
+                            Toast.makeText(DatabaseManager.this, task.getException().toString(),
                                     Toast.LENGTH_SHORT).show();
                             reload();
                         }
@@ -97,13 +97,13 @@ public class Deleteafterupdate extends AppCompatActivity {
         // [END create_user_with_email]
     }
     private void updateUI(FirebaseUser user) {
-        Intent intent = new Intent(Deleteafterupdate.this, OTP.class);
+        Intent intent = new Intent(DatabaseManager.this, OTP.class);
         startActivity(intent);
         finish();
 
     }
     private void reload(){
-        Intent intent = new Intent(Deleteafterupdate.this, SignUp.class);
+        Intent intent = new Intent(DatabaseManager.this, SignUp.class);
         startActivity(intent);
         finish();
     }

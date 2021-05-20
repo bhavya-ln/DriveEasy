@@ -182,7 +182,9 @@ public class Dashboard extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     DashboardHelperClass HelperClass = new DashboardHelperClass(formatter.format(calendarView.getDate()),seekBar.getProgress(),s);
-                    reference2.child(user.getPhoneNumber()).setValue(HelperClass);
+                    reference2.child(user.getPhoneNumber()).child("date").setValue(HelperClass.date);
+                    reference2.child(user.getPhoneNumber()).child("locSet").setValue(HelperClass.locSet);
+                    reference2.child(user.getPhoneNumber()).child("noD").setValue(HelperClass.noD);
                     if(s.equals("") || s.equals("Select location later"))
                     {
                         Toast.makeText(com.example.driveeasy.Dashboard.this,"Select valid location in search bar",Toast.LENGTH_SHORT).show();

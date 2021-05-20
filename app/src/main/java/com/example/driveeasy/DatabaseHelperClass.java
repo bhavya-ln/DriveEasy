@@ -1,11 +1,11 @@
 package com.example.driveeasy;
 
-public class DeleteHelperClass {
+public class DatabaseHelperClass {
     String Name, NoS, NumPlate, FT,ImgID,Price;
-    public DeleteHelperClass() {
+    public DatabaseHelperClass() {
 
     }
-    public DeleteHelperClass(String Name, String NoS, String NumPlate, String FT,String ImgID,String Price) {
+    public DatabaseHelperClass(String Name, String NoS, String NumPlate, String FT, String ImgID, String Price) {
         this.Name = Name;
         this.NoS = NoS;
         this.NumPlate = NumPlate;

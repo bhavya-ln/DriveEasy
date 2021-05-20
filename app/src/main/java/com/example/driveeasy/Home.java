@@ -188,11 +188,12 @@ public class Home extends AppCompatActivity {
 
                 Toast.makeText(com.example.driveeasy.Home.this,query,Toast.LENGTH_SHORT).show();
                 listView.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
+                recyclerView.setVisibility(View.GONE);
                 listView.setVisibility(View.VISIBLE);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
