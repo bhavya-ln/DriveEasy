@@ -114,9 +114,17 @@ import com.google.firebase.auth.FirebaseUser;
         }
 
         private void updateUI(FirebaseUser user) {
-                Intent intent = new Intent(com.example.driveeasy.SignIn.this, PaymentAuth.class);
+            if(user.getPhoneNumber()==null)
+            {Intent intent = new Intent(com.example.driveeasy.SignIn.this, OTP.class);
+                startActivity(intent);
+                finish();}
+            else
+            {
+                Intent intent = new Intent(com.example.driveeasy.SignIn.this, Dashboard.class);
                 startActivity(intent);
                 finish();
+            }
+
 
         }
     }

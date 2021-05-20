@@ -29,7 +29,7 @@ public  class SignUp extends AppCompatActivity {
         private static final String TAG="EmailPassword";
         private FirebaseAuth mAuth;
         FirebaseDatabase rootNode;
-        DatabaseReference reference,ref;
+        DatabaseReference reference,reference2,ref,ref2;
 
 
         @Override
@@ -53,13 +53,16 @@ public  class SignUp extends AppCompatActivity {
 
                         rootNode= FirebaseDatabase.getInstance();
                         reference=rootNode.getReference("Users");
+                        reference2 = rootNode.getReference("UserList");
                         ref=reference.child("+91"+phone.getEditText().getText().toString());
                         UserHelperClass HelperClass = new UserHelperClass(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString(),phone.getEditText().getText().toString());
                         createAccount(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString());
                         ref.setValue(HelperClass);
 
                     }
-                });
+
+
+            });
             back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -69,6 +72,7 @@ public  class SignUp extends AppCompatActivity {
                 }
             });
         }
+
 
         private void createAccount(String name,String email, String password) {
             // [START create_user_with_email]
