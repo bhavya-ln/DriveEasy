@@ -46,7 +46,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
         holder.ft.setText(car.getFt());
         holder.numplate.setText(car.getNumplate());
         holder.noS.setText(car.getNoS());
-        holder.price.setText("Rate per Hour: "+car.getPrice());
+        holder.price.setText("Rate per Day: "+car.getPrice());
         Picasso.with(context).load(car.getImgID()).resize(260, 260).into(holder.imgID);
 //        holder.imgID.setOnClickListener(new View.OnClickListener() {
 //            @Override

@@ -115,7 +115,7 @@ public class ItemScreen extends AppCompatActivity {
         ref.child("price").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                cost.getEditText().setText("RATE PER HOUR: ₹"+dataSnapshot.getValue(String.class));
+                cost.getEditText().setText("RATE PER DAY: ₹"+dataSnapshot.getValue(String.class));
                 //do what you want with the email
             }
 

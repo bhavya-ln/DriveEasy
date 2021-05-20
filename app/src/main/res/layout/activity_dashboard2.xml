@@ -70,13 +70,6 @@
                     android:layout_gravity="center"
                     />
 
-                <TimePicker
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:id="@+id/timePicker"
-                    android:background="#042023" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -87,12 +80,13 @@
 
                 <SeekBar
                     android:id="@+id/seekBar"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    style="@style/Widget.AppCompat.SeekBar"
+
                     android:layout_width="match_parent"
                     android:layout_height="104dp"
                     android:max="12"
                     android:min="1"
-                    android:progress="0" />
+                    android:progress="1" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -110,9 +104,6 @@
                     android:layout_height="37dp"
                     android:layout_gravity="center"
                     android:text="Proceed" />
-
-
-
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

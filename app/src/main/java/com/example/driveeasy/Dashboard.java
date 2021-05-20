@@ -27,16 +27,22 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-    public class Dashboard extends AppCompatActivity {
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
+public class Dashboard extends AppCompatActivity {
         ActionBarDrawerToggle toggle;
         DrawerLayout drawerLayout;
         Toolbar toolbar;
@@ -50,7 +56,8 @@ import java.util.Calendar;
 
         // creating a variable for database reference.
         FirebaseDatabase rootNode;
-        DatabaseReference reference;
+        DatabaseReference reference,reference2;
+
 
         ArrayAdapter arrayAdapter;
         ArrayList<String> arrayList = new ArrayList<>();
@@ -64,6 +71,7 @@ import java.util.Calendar;
             listView = findViewById(R.id.list);
             rootNode = FirebaseDatabase.getInstance();
             reference =  rootNode.getReference("Location");
+            reference2 =  rootNode.getReference("Users");
 
 
     //        listView = findViewById(R.id.list);
@@ -114,7 +122,7 @@ import java.util.Calendar;
 
 
 
-
+        String s = "";
         @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
@@ -126,18 +134,19 @@ import java.util.Calendar;
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     Toast.makeText(com.example.driveeasy.Dashboard.this,query,Toast.LENGTH_SHORT).show();
-                    listView.setVisibility(View.GONE);
+                    listView.setVisibility(GONE);
                     return false;
                 }
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    listView.setVisibility(View.VISIBLE);
+                    listView.setVisibility(VISIBLE);
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Object listItem = listView.getItemAtPosition(position);
                             searchView.setQuery(listItem.toString(),true);
+                            s = listItem.toString();
                         }
                     });
                     arrayAdapter.getFilter().filter(newText);
@@ -153,6 +162,12 @@ import java.util.Calendar;
         @Override
         public void onStart() {
             super.onStart();
+            FirebaseUser user;
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
+            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            SeekBar seekBar = findViewById(R.id.seekBar);
+            user = mAuth.getCurrentUser();
             toolbar=findViewById(R.id.toolbar);
             proceed=findViewById(R.id.Proceed);
             setActionBar(toolbar);
@@ -166,30 +181,30 @@ import java.util.Calendar;
             proceed.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(com.example.driveeasy.Dashboard.this, Home.class);
-                    startActivity(intent);
-                    finish();
+                    DashboardHelperClass HelperClass = new DashboardHelperClass(formatter.format(calendarView.getDate()),seekBar.getProgress(),s);
+                    reference2.child(user.getPhoneNumber()).setValue(HelperClass);
+                    if(s.equals("") || s.equals("Select location later"))
+                    {
+                        Toast.makeText(com.example.driveeasy.Dashboard.this,"Select valid location in search bar",Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+
+                        Intent intent = new Intent(com.example.driveeasy.Dashboard.this, Home.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             });
 
-    //        TimePicker timePicker =(TimePicker)findViewById(R.id.timePicker);
-    //        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-    //            @Override
-    //            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-    //                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-    //                    timePicker.setHour(hourOfDay);
-    //
-    //                    timePicker.setMinute(minute);
-    //                }
-    //            }
-    //        });
 
-            SeekBar seekBar = findViewById(R.id.seekBar);
+
+
             TextView text = findViewById(R.id.text);
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    text.setText(""+seekBar.getProgress()+" Days");
+                    text.setText(""+seekBar.getProgress()+" Day(s)");
 
                 }
 
@@ -208,15 +223,17 @@ import java.util.Calendar;
 
 
             //Selecting Calendar date and not allowing any date before current date on selection
-            CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
+
             calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                 @Override
                 public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                     if(System.currentTimeMillis()-calendarView.getDate()>86400000){
                         calendarView.setMinDate(System.currentTimeMillis());
                     }
+
                 }
             });
+
 
             //Navigation menu popping out and toggling
             nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

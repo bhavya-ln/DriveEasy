@@ -78,7 +78,7 @@ public class PaymentAuth extends AppCompatActivity {
         auth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                biometricPrompt.authenticate(promptInfo);
+
             }
         });
 
@@ -103,6 +103,7 @@ public class PaymentAuth extends AppCompatActivity {
                         Context.NOTIFICATION_SERVICE
                 );
                 notificationManager.notify(1,builder.build());
+                biometricPrompt.authenticate(promptInfo);
 
             }
         });
