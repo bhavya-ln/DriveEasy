@@ -4,9 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.biometric.BiometricPrompt;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +22,7 @@ import java.util.concurrent.Executor;
 
 public class PaymentAuth extends AppCompatActivity {
     private Button auth;
+    private Button notification;
 
     private Executor executor;
     private BiometricPrompt biometricPrompt;
@@ -28,6 +35,12 @@ public class PaymentAuth extends AppCompatActivity {
         setContentView(R.layout.activity_payment_auth);
 
         auth=findViewById(R.id.auth);
+        notification=findViewById(R.id.notification);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            NotificationChannel channel= new NotificationChannel("PayMent","DriveEasy notifications",NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager=getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
 
         executor= ContextCompat.getMainExecutor(this);
         biometricPrompt=new BiometricPrompt(PaymentAuth.this, executor, new BiometricPrompt.AuthenticationCallback() {
@@ -66,6 +79,31 @@ public class PaymentAuth extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 biometricPrompt.authenticate(promptInfo);
+            }
+        });
+
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message="Notification Message";
+                NotificationCompat.Builder builder= new NotificationCompat.Builder(
+                        PaymentAuth.this, "PayMent"
+                );
+                builder.setSmallIcon(R.drawable.ic_message);
+                builder.setContentTitle("New notification");
+                builder.setContentText(message);
+                builder.setAutoCancel(true);
+                //Intent intent= new Intent(PaymentAuth.this,NotificationActivity.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //intent.putExtra("message",message);
+                //PendingIntent pendingIntent=PendingIntent.getActivity(PaymentAuth.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                //builder.setContentIntent(pendingIntent);
+
+                NotificationManager notificationManager=(NotificationManager)getSystemService(
+                        Context.NOTIFICATION_SERVICE
+                );
+                notificationManager.notify(1,builder.build());
+
             }
         });
     }
