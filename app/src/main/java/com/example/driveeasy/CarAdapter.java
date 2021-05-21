@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,8 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -93,6 +98,75 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
     public int getItemCount() {
         return cars.size();
     }
+
+    public Filter getFilter() {
+
+        return filter;
+
+
+    }
+
+    private Filter filter = new Filter() {
+        @NonNull
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<Car> filteredList  = new ArrayList<>();
+//            cars.clear();
+            if(constraint==null||constraint.length()==0)
+            {
+
+                DatabaseReference reference;
+                reference = FirebaseDatabase.getInstance().getReference("Cars");
+                reference.addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                            Car car = dataSnapshot.getValue(Car.class);
+                                                            cars.add(car);
+
+                                                        }
+                                                        notifyDataSetChanged();
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                                    }
+                                                }
+                );
+                FilterResults results = new FilterResults();
+                results.values = cars;
+                return results;
+
+            }
+            else
+            {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for(Car item : cars)
+                {
+                    if(item.getName().toLowerCase().contains(filterPattern))
+                    {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+
+        @NonNull
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            cars.clear();
+            cars.addAll((ArrayList) results.values);
+            notifyDataSetChanged();
+
+
+        }
+    };
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name,noS,numplate,ft,type,price;

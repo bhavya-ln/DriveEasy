@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -58,48 +59,48 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        listView = findViewById(R.id.list);
-        rootNode = FirebaseDatabase.getInstance();
-        refdb =  rootNode.getReference("CarNames");
-
-
-        //        listView = findViewById(R.id.list);
-        //        coursesArrayList = new ArrayList<String>();
-        //
-        //        // calling a method to get data from
-        //        // Firebase and set data to list view
-        //        initializeListView();
-
-        listView = findViewById(R.id.list);
-        refdb.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String value = snapshot.getValue(String.class);
-                arrayList.add(value);
-                arrayAdapter = new ArrayAdapter<String>(com.example.driveeasy.Home.this,android.R.layout.simple_list_item_1,arrayList);
-                listView.setAdapter(arrayAdapter);
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        listView = findViewById(R.id.list);
+//        rootNode = FirebaseDatabase.getInstance();
+//        refdb =  rootNode.getReference("CarNames");
+//
+//
+//        //        listView = findViewById(R.id.list);
+//        //        coursesArrayList = new ArrayList<String>();
+//        //
+//        //        // calling a method to get data from
+//        //        // Firebase and set data to list view
+//        //        initializeListView();
+//
+//        listView = findViewById(R.id.list);
+//        refdb.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                String value = snapshot.getValue(String.class);
+//                arrayList.add(value);
+//                arrayAdapter = new ArrayAdapter<String>(com.example.driveeasy.Home.this,android.R.layout.simple_list_item_1,arrayList);
+//                listView.setAdapter(arrayAdapter);
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         recyclerView = findViewById(R.id.recylerView);
         reference = FirebaseDatabase.getInstance().getReference("Cars");
@@ -161,48 +162,56 @@ public class Home extends AppCompatActivity {
                 return true;
             }
         });
-//        recyclerView.addOnItemTouchListener(
-//                new RecyclerItemClickListener(context, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
-//                    @Override public void onItemClick(View view, int position) {
-//                        // do whatever
-//                    }
-//
-//                    @Override public void onLongItemClick(View view, int position) {
-//                        // do whatever
-//                    }
-//                })
-//        );
 
 
     }
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.option_menu, menu);
-        MenuItem menuItem = menu.findItem(R.id.search);
+        getMenuInflater().inflate(R.menu.homesearch, menu);
+        MenuItem menuItem = menu.findItem(R.id.searchhome);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Enter Car Name");
+        MenuItemCompat.setOnActionExpandListener(menuItem, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                cars.clear();
+                recyclerView.setAdapter(myAdapter);
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Car car = dataSnapshot.getValue(Car.class);
+                            cars.add(car);
+                        }
+                        myAdapter.notifyDataSetChanged();
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                }
+                );
+                // Write your code here
+                return true;
+            }
+        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                Toast.makeText(com.example.driveeasy.Home.this,query,Toast.LENGTH_SHORT).show();
-                listView.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
+                reload();//put functionality
                 return false;
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                recyclerView.setVisibility(View.GONE);
-                listView.setVisibility(View.VISIBLE);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Object listItem = listView.getItemAtPosition(position);
-                        searchView.setQuery(listItem.toString(),true);
-                    }
-                });
-                arrayAdapter.getFilter().filter(newText);
+                if (true) {
+                    myAdapter.getFilter().filter(newText);
+                }
                 return false;
 
             }
@@ -213,4 +222,9 @@ public class Home extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return toggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
+    private void reload() {
+        Intent intent = new Intent(com.example.driveeasy.Home.this, com.example.driveeasy.Home.class);
+        startActivity(intent);
+        finish();
+}
 }
