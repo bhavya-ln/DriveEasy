@@ -29,7 +29,7 @@ public  class SignUp extends AppCompatActivity {
         private static final String TAG="EmailPassword";
         private FirebaseAuth mAuth;
         FirebaseDatabase rootNode;
-        DatabaseReference reference,reference2,ref,ref2;
+        DatabaseReference reference,ref;
 
 
         @Override
@@ -39,7 +39,7 @@ public  class SignUp extends AppCompatActivity {
             mAuth = FirebaseAuth.getInstance();
         }
         public void onStart() {
-           Button next=findViewById(R.id.next);
+            Button next=findViewById(R.id.next);
             TextInputLayout name=findViewById(R.id.name);
             TextInputLayout user=findViewById(R.id.user);
             TextInputLayout pass=findViewById(R.id.pass);
@@ -53,11 +53,11 @@ public  class SignUp extends AppCompatActivity {
 
                         rootNode= FirebaseDatabase.getInstance();
                         reference=rootNode.getReference("Users");
-                        reference2 = rootNode.getReference("UserList");
                         ref=reference.child("+91"+phone.getEditText().getText().toString());
                         UserHelperClass HelperClass = new UserHelperClass(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString(),phone.getEditText().getText().toString());
                         createAccount(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString());
                         ref.setValue(HelperClass);
+
 
                     }
 
@@ -76,6 +76,7 @@ public  class SignUp extends AppCompatActivity {
 
         private void createAccount(String name,String email, String password) {
             // [START create_user_with_email]
+            Button next=findViewById(R.id.next);
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -84,14 +85,16 @@ public  class SignUp extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
 
                                 Log.d(TAG, "createUserWithEmail:success");
+                                next.setVisibility(View.GONE);
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
-                                ref.child(name).removeValue();//removes child since loggin failed
+//                                ref.child(name).removeValue();//removes child since loggin failed
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(com.example.driveeasy.SignUp.this, task.getException().toString(),
                                         Toast.LENGTH_SHORT).show();
+                                next.setVisibility(View.VISIBLE);
                                 reload();
                             }
                         }
@@ -100,6 +103,7 @@ public  class SignUp extends AppCompatActivity {
         }
         private void updateUI(FirebaseUser user) {
             TextInputLayout phone=findViewById(R.id.p);
+
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     "+91"+phone.getEditText().getText().toString(),
                     60,
@@ -122,6 +126,7 @@ public  class SignUp extends AppCompatActivity {
                         public void onCodeSent(@NonNull String verificationID, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
 
                             String s = verificationID;
+
                             Intent intent= new Intent(getApplicationContext(), VerifyOTP.class);
                             intent.putExtra("mobile",phone.getEditText().getText().toString());
                             intent.putExtra("verify",s);
