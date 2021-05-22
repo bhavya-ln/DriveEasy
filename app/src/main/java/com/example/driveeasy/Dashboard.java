@@ -245,9 +245,17 @@ public class Dashboard extends AppCompatActivity {
                     int id = item.getItemId();
                     if(id== R.id.home)
                     {
-                        Intent intent = new Intent(com.example.driveeasy.Dashboard.this, com.example.driveeasy.Home.class);
-                        startActivity(intent);
-                        finish();
+                        if(s.equals("") || s.equals("Select location later"))
+                        {
+                            Toast.makeText(com.example.driveeasy.Dashboard.this,"Select valid location in search bar",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+
+                            Intent intent = new Intent(com.example.driveeasy.Dashboard.this, Home.class);
+                            startActivity(intent);
+                            finish();
+                        }
                     }
                     else if(id== R.id.logout)
                     {
