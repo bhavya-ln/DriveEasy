@@ -7,6 +7,7 @@ import androidx.biometric.BiometricPrompt;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -60,6 +61,7 @@ public class PaymentAuth extends AppCompatActivity {
         rootNode= FirebaseDatabase.getInstance();
         reference=rootNode.getReference("Users");
         ref=reference.child(user.getPhoneNumber());
+        final String[] s = new String[3];
 
         FloatingActionButton back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +78,7 @@ public class PaymentAuth extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 carname.getEditText().setText("MODEL: "+dataSnapshot.getValue(String.class));
+                s[2]=dataSnapshot.getValue(String.class);
 
             }
 
@@ -100,6 +103,7 @@ public class PaymentAuth extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 locSet.getEditText().setText("Location of pickup: "+dataSnapshot.getValue(String.class));
+                s[0] = dataSnapshot.getValue(String.class);
                 //do what you want with the email
             }
 
@@ -112,6 +116,7 @@ public class PaymentAuth extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 date.getEditText().setText("Date of start: "+dataSnapshot.getValue(String.class));
+                s[1] = dataSnapshot.getValue(String.class);
                 //do what you want with the email
             }
 
@@ -164,7 +169,7 @@ public class PaymentAuth extends AppCompatActivity {
 //
         notification=findViewById(R.id.notification);
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
-            NotificationChannel channel= new NotificationChannel("PayMent","DriveEasy notifications",NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel channel= new NotificationChannel("PayMent","DriveEasy notifications",NotificationManager.IMPORTANCE_HIGH);
             NotificationManager manager=getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
         }
@@ -182,14 +187,18 @@ public class PaymentAuth extends AppCompatActivity {
                 super.onAuthenticationSucceeded(result);
                 //authentication succeeded then continue!
                 Toast.makeText(PaymentAuth.this,"Success!",Toast.LENGTH_LONG);
-                String message="Notification Message";
+                String message="Proceed to "+s[0]+" on "+s[1]+"with your driver's license in hand for pick up." ;
                 NotificationCompat.Builder builder= new NotificationCompat.Builder(
                         PaymentAuth.this, "PayMent"
                 );
                 builder.setSmallIcon(R.drawable.ic_message);
-                builder.setContentTitle("New notification");
-                builder.setContentText(message);
+                builder.setContentTitle("Order Confirmed!");
+                builder.setContentText(s[2]+" booked for "+x[1]+" days.");
                 builder.setAutoCancel(true);
+                builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+                builder.setDefaults(Notification.DEFAULT_ALL);
+                builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
+
                 //Intent intent= new Intent(PaymentAuth.this,NotificationActivity.class);
                 //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 //intent.putExtra("message",message);
