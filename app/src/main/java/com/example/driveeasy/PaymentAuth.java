@@ -13,6 +13,11 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -58,10 +63,11 @@ public class PaymentAuth extends AppCompatActivity {
         TextInputLayout Numplate = findViewById(R.id.NumberPlateInput);
         TextInputLayout cost = findViewById(R.id.CostInput);
         FirebaseUser user = mAuth.getCurrentUser();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logof);
         rootNode= FirebaseDatabase.getInstance();
         reference=rootNode.getReference("Users");
         ref=reference.child(user.getPhoneNumber());
-        final String[] s = new String[3];
+        final String[] s = new String[4];
 
         FloatingActionButton back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +97,7 @@ public class PaymentAuth extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Picasso.with(context).load(dataSnapshot.getValue(String.class)).resize(600, 600).into(img);
-
+                s[3]=dataSnapshot.getValue(String.class);
             }
 
             @Override
@@ -187,18 +193,20 @@ public class PaymentAuth extends AppCompatActivity {
                 super.onAuthenticationSucceeded(result);
                 //authentication succeeded then continue!
                 Toast.makeText(PaymentAuth.this,"Success!",Toast.LENGTH_LONG);
-                String message="Proceed to "+s[0]+" on "+s[1]+"with your driver's license in hand for pick up." ;
+                String message="Proceed to "+s[0]+" on "+s[1]+" with your driver's license in hand for pick up." ;
                 NotificationCompat.Builder builder= new NotificationCompat.Builder(
                         PaymentAuth.this, "PayMent"
                 );
+
                 builder.setSmallIcon(R.drawable.ic_message);
                 builder.setContentTitle("Order Confirmed!");
-                builder.setContentText(s[2]+" booked for "+x[1]+" days.");
+                builder.setContentText(s[2]+" booked for "+x[1]+" day(s).");
                 builder.setAutoCancel(true);
                 builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+                builder.setLargeIcon(bitmap);
                 builder.setDefaults(Notification.DEFAULT_ALL);
                 builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
-
+//                builder.setCategory(NotificationCompat.CATEGORY_MESSAGE);
                 //Intent intent= new Intent(PaymentAuth.this,NotificationActivity.class);
                 //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 //intent.putExtra("message",message);
