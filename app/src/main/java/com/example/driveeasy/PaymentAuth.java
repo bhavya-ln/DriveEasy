@@ -16,25 +16,152 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.Executor;
 
 public class PaymentAuth extends AppCompatActivity {
-    private Button auth;
+    private FloatingActionButton back;
     private Button notification;
-
+    Context context;
     private Executor executor;
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
+    FirebaseDatabase rootNode;
+    DatabaseReference reference,ref;
+    FirebaseUser user;
+    FirebaseAuth mAuth;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_auth);
+        mAuth = FirebaseAuth.getInstance();
+        ImageView img = findViewById(R.id.imageView);
+        TextInputLayout carname = findViewById(R.id.carname);
+        TextInputLayout locSet = findViewById(R.id.locSet);
+        TextInputLayout date = findViewById(R.id.date);
+        TextInputLayout Numplate = findViewById(R.id.NumberPlateInput);
+        TextInputLayout cost = findViewById(R.id.CostInput);
+        FirebaseUser user = mAuth.getCurrentUser();
+        rootNode= FirebaseDatabase.getInstance();
+        reference=rootNode.getReference("Users");
+        ref=reference.child(user.getPhoneNumber());
 
-        auth=findViewById(R.id.auth);
+        FloatingActionButton back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PaymentAuth.this,"Order Cancelled",Toast.LENGTH_LONG);
+                Intent intent = new Intent(com.example.driveeasy.PaymentAuth.this, Home.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        ref.child("selectedCar").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                carname.getEditText().setText("MODEL: "+dataSnapshot.getValue(String.class));
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        ref.child("imgID").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Picasso.with(context).load(dataSnapshot.getValue(String.class)).resize(600, 600).into(img);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        ref.child("locSet").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                locSet.getEditText().setText("Location of pickup: "+dataSnapshot.getValue(String.class));
+                //do what you want with the email
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        ref.child("date").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                date.getEditText().setText("Date of start: "+dataSnapshot.getValue(String.class));
+                //do what you want with the email
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        ref.child("numPlate").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Numplate.getEditText().setText("LAST FOUR DIGITS OF NUMBER PLATE: "+dataSnapshot.getValue(String.class));
+                //do what you want with the email
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        final int[] x = new int[2];
+        ref.child("noD").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                x[1]= dataSnapshot.getValue(int.class);
+                date.getEditText().setText(date.getEditText().getText().toString()+" \n[Valid for "+x[1]+" days from this date]");
+                //do what you want with the email
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        ref.child("price").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String s = dataSnapshot.getValue(String.class);
+                x[0] = Integer. valueOf(s);
+                cost.getEditText().setText("TOTAL BILL: ₹"+x[0]*x[1]);
+                //do what you want with the email
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+//
         notification=findViewById(R.id.notification);
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
             NotificationChannel channel= new NotificationChannel("PayMent","DriveEasy notifications",NotificationManager.IMPORTANCE_DEFAULT);
@@ -55,6 +182,24 @@ public class PaymentAuth extends AppCompatActivity {
                 super.onAuthenticationSucceeded(result);
                 //authentication succeeded then continue!
                 Toast.makeText(PaymentAuth.this,"Success!",Toast.LENGTH_LONG);
+                String message="Notification Message";
+                NotificationCompat.Builder builder= new NotificationCompat.Builder(
+                        PaymentAuth.this, "PayMent"
+                );
+                builder.setSmallIcon(R.drawable.ic_message);
+                builder.setContentTitle("New notification");
+                builder.setContentText(message);
+                builder.setAutoCancel(true);
+                //Intent intent= new Intent(PaymentAuth.this,NotificationActivity.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //intent.putExtra("message",message);
+                //PendingIntent pendingIntent=PendingIntent.getActivity(PaymentAuth.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                //builder.setContentIntent(pendingIntent);
+
+                NotificationManager notificationManager=(NotificationManager)getSystemService(
+                        Context.NOTIFICATION_SERVICE
+                );
+                notificationManager.notify(1,builder.build());
                 Intent intent = new Intent(PaymentAuth.this, Dashboard.class);
                 startActivity(intent);
                 finish();
@@ -75,34 +220,17 @@ public class PaymentAuth extends AppCompatActivity {
                 .setNegativeButtonText("Payment Authentication")
                 .build();
         //handle auth
-        auth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        auth.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String message="Notification Message";
-                NotificationCompat.Builder builder= new NotificationCompat.Builder(
-                        PaymentAuth.this, "PayMent"
-                );
-                builder.setSmallIcon(R.drawable.ic_message);
-                builder.setContentTitle("New notification");
-                builder.setContentText(message);
-                builder.setAutoCancel(true);
-                //Intent intent= new Intent(PaymentAuth.this,NotificationActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                //intent.putExtra("message",message);
-                //PendingIntent pendingIntent=PendingIntent.getActivity(PaymentAuth.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                //builder.setContentIntent(pendingIntent);
 
-                NotificationManager notificationManager=(NotificationManager)getSystemService(
-                        Context.NOTIFICATION_SERVICE
-                );
-                notificationManager.notify(1,builder.build());
                 biometricPrompt.authenticate(promptInfo);
 
             }
