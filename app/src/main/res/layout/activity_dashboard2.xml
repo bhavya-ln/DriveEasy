@@ -106,12 +106,16 @@
                     android:id="@+id/Proceed"
 
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="37dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+
+                    android:backgroundTint="#F99A0D"
+                    android:elevation="4dp"
                     android:text="Proceed"
-                    android:textColor="#FAE8B1"
+
+                    android:textColor="#161616"
                     app:backgroundTint="#161616" />
             </LinearLayout>
         </ScrollView>
