@@ -69,7 +69,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
 //                public void onClick(View v) {
 //                }
 //            });
-        holder.imgID.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseDatabase rootNode;

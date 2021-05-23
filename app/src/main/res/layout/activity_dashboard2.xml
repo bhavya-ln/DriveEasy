@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:background="#161616"
+    android:backgroundTint="#161616"
     android:theme="@android:style/Theme.NoTitleBar"
     tools:actionBarNavMode="list"
     tools:context=".Dashboard$Dashboard"
@@ -16,40 +18,50 @@
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:background="#161616"
         android:layout_gravity="start"
+        app:itemTextColor="#F99A0D"
         app:headerLayout="@layout/header"
         app:menu="@menu/menu" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#042023"
+        android:background="#161616"
+        android:backgroundTint="#161616"
         android:orientation="vertical">
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
+            android:backgroundTint="#161616"
             android:layout_height="wrap_content"
             android:visibility="gone"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello"
-            android:textSize="30dp"
             android:layout_gravity="center"
-            />
+            android:gravity="center"
+            android:text="Select Pickup Date:"
+            android:textColor="#F99A0D"
+            android:textSize="30dp" />
 
 
         <CalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
-            android:layout_height="287dp"
+            android:layout_height="267dp"
             android:layout_gravity="center"
-            android:background="#042023"
+            android:background="#161616"
             android:fadeScrollbars="true"
-            android:isScrollContainer="true" />
+            android:focusedMonthDateColor="#FAE8B1"
+            android:isScrollContainer="true"
+            android:padding="20dp" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scrollbarSize="10dp"
+            android:backgroundTint="#161616"
             >
 
 
@@ -58,25 +70,18 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#042023"
+                android:background="#161616"
                 android:orientation="vertical">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Helloo"
-                    android:textSize="30dp"
                     android:layout_gravity="center"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hello"
-                    android:textSize="30dp"
-                    android:layout_gravity="center"
-                    />
+                    android:gravity="center"
+                    android:text="Select No.of Days:"
+                    android:textColor="#F99A0D"
+                    android:textSize="30dp" />
 
                 <SeekBar
                     android:id="@+id/seekBar"
@@ -87,14 +92,15 @@
                     android:max="12"
                     android:min="1"
                     android:progress="1" />
+
                 <TextView
+                    android:id="@+id/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/text"
-                    android:text="1 day"
-                    android:textSize="30dp"
                     android:layout_gravity="center"
-                    />
+                    android:text="1 day"
+                    android:textColor="#F99A0D"
+                    android:textSize="30dp" />
 
                 <Button
                     android:id="@+id/Proceed"
@@ -102,8 +108,11 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="37dp"
+                    android:layout_marginTop="20dp"
                     android:layout_gravity="center"
-                    android:text="Proceed" />
+                    android:text="Proceed"
+                    android:textColor="#FAE8B1"
+                    app:backgroundTint="#161616" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

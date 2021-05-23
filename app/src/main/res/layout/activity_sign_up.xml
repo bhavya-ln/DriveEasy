@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D8F1F4"
+    android:background="#161616"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#161616"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".SignUp$SignUp">
+
     <TextView
+        style="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to DriveEasy.Please fill in the details below and sign up"
-        android:textSize="25dp"
-        android:textAlignment="center"
         android:layout_marginBottom="30dp"
-        style="@style/TextAppearance.AppCompat.Headline"
-        android:textStyle="italic"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        android:text="Welcome to DriveEasy.Please fill in the details below and sign up"
+        android:textAlignment="center"
+        android:textColor="#F99A0D"
+        android:textSize="25dp"
+        android:textStyle="italic" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/name"
@@ -31,7 +37,9 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp" />
+            android:layout_marginTop="48dp"
+            android:background="#FAE8B1"
+            android:textColor="#161616" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -50,7 +58,9 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp" />
+            android:layout_marginTop="48dp"
+            android:background="#FAE8B1"
+            android:textColor="#161616" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -71,7 +81,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:inputType="textPassword" />
+            android:background="#FAE8B1"
+            android:inputType="textPassword"
+            android:textColor="#161616" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -90,8 +102,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#FAE8B1"
             android:ems="10"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:textColor="#161616" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -103,15 +117,17 @@
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:text="Next"
-        android:textColor="#072735"
-        app:backgroundTint="#92ECF8" />
+        android:textColor="#F99A0D"
+        app:backgroundTint="#161616" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        app:backgroundTint="#F99A0D"
         app:srcCompat="@drawable/abc_vector_test" />
 
 
 </LinearLayout>
+</ScrollView>

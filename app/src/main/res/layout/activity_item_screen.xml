@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:backgroundTint="#161616"
     android:theme="@android:style/Theme.NoTitleBar"
     tools:actionBarNavMode="list"
     tools:context=".ItemScreen"
@@ -17,48 +18,59 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="#161616"
+        android:backgroundTint="#161616"
+        app:itemTextColor="#F99A0D"
         app:headerLayout="@layout/header"
         app:menu="@menu/menu" />
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:backgroundTint="#161616"
     tools:context=".ItemScreen">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#161616"
+        android:backgroundTint="#161616"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:orientation="vertical">
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars"
-            android:layout_gravity="center"/>
+            tools:srcCompat="@tools:sample/avatars" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/carname"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
 
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
                 android:layout_gravity="center"
-                android:textSize="40dp"
-                android:textColor="@color/white"
-                android:enabled="false"/>
+                android:layout_marginTop="48dp"
+                android:enabled="false"
+                android:textColor="#F99A0D"
+                android:textSize="40dp" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/FuelTypeInput"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -71,13 +83,14 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:enabled="false"/>
+                android:layout_marginTop="48dp"
+                android:enabled="false"
+                android:textColor="#F99A0D" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/SeatNumberInput"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -90,13 +103,14 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:enabled="false"/>
+                android:layout_marginTop="48dp"
+                android:enabled="false"
+                android:textColor="#F99A0D" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/NumberPlateInput"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -109,32 +123,33 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:enabled="false"/>
+                android:layout_marginTop="48dp"
+                android:enabled="false"
+                android:textColor="#F99A0D" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/CostInput"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
 
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
                 android:layout_gravity="center"
-                android:textSize="28dp"
+                android:layout_marginTop="48dp"
+                android:enabled="false"
 
-                android:textColor="@color/white"
-                android:enabled="false"/>
+                android:textColor="#F99A0D"
+                android:textSize="28dp" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -143,15 +158,17 @@
             android:id="@+id/Buy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="64dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="64dp"
+            android:background="#FAE8B1"
             android:clickable="true"
+            app:backgroundTint="#FAE8B1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/cart"
-            android:layout_gravity="right" />
+            app:srcCompat="@drawable/cart" />
     </LinearLayout>
 
 </ScrollView>

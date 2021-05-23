@@ -4,20 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScrollView01"
     android:layout_width="fill_parent"
-    android:background="#B4DFF3"
+    android:background="#C3ECFE"
     android:layout_height="fill_parent" >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B4DFF3"
+        android:background="#161616"
         android:orientation="vertical"
         android:padding="20dp">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:background="#FFFFFF"
             android:src="@drawable/logof"
             android:transitionName="logo_item" />
@@ -25,8 +26,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Welcome to DriveEasy.Please login to continue:"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Welcome "
+            android:textColor="#F99A0D"
+            android:textSize="30dp"
+            android:textStyle="italic"
+            android:transitionName="text_item" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Please Login to Continue "
+            android:textColor="#F99A0D"
             android:textSize="30dp"
             android:textStyle="italic"
             android:transitionName="text_item" />
@@ -41,20 +56,23 @@
                 android:id="@+id/user"
                 android:layout_width="match_parent"
 
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="#FAE4C4"
+                android:textColor="#FAE8B1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            android:hint="Password">
+            android:hint="Password"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#FAE4C4"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,18 +82,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="#F1E7E7"
+            android:background="#FAE4C4"
             android:backgroundTint="@color/teal_700"
             android:text="Sign In"
-            android:textColor="#D1AFAF"
-            app:backgroundTint="#EADEDE" />
+            android:textColor="#161616"
+            app:backgroundTint="#FAE4C4" />
 
         <Button
             android:id="@+id/signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="New User? Sign up" />.
+            android:text="New User? Sign up"
+            android:textColor="#161616"
+            app:backgroundTint="#FAE4C4" />.
 
 
     </LinearLayout>

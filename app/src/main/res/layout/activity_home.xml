@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:backgroundTint="#161616"
+    android:background="#161616"
     android:theme="@android:style/Theme.NoTitleBar"
     tools:actionBarNavMode="list"
     tools:context=".Home"
@@ -18,22 +20,25 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:backgroundTint="#161616"
         app:headerLayout="@layout/header"
+        app:itemTextColor="#F99A0D"
         app:menu="@menu/menu" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#042023"
+        android:background="#161616"
         android:orientation="vertical">
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
+<!--    <ListView-->
+<!--        android:id="@+id/list"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="gone"/>-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello"
+        android:text="Choose Your Ride:"
+        android:textColor="#F99A0D"
         android:textSize="30dp"
         android:layout_gravity="center"
         />
@@ -49,6 +54,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerView"
         android:layout_width="match_parent"
+        android:backgroundTint="#161616"
+        android:background="#161616"
         android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
