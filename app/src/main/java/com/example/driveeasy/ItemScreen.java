@@ -67,7 +67,7 @@ public class ItemScreen extends AppCompatActivity {
         ref.child("imgID").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Picasso.with(context).load(dataSnapshot.getValue(String.class)).resize(1000, 1000).into(img);
+                Picasso.with(context).load(dataSnapshot.getValue(String.class)).placeholder(R.mipmap.ic_launcher_foreground).resize(1000, 1000).into(img);
 
             }
 
@@ -80,7 +80,7 @@ public class ItemScreen extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 fueltypeinput.getEditText().setText("FUEL TYPE: "+dataSnapshot.getValue(String.class));
-                //do what you want with the email
+
             }
 
             @Override
@@ -92,7 +92,7 @@ public class ItemScreen extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 seatnumberinput.getEditText().setText("NUMBER OF SEATS: "+dataSnapshot.getValue(String.class));
-                //do what you want with the email
+
             }
 
             @Override
@@ -104,7 +104,7 @@ public class ItemScreen extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Numplate.getEditText().setText("LAST FOUR DIGITS OF NUMBER PLATE: "+dataSnapshot.getValue(String.class));
-                //do what you want with the email
+
             }
 
             @Override
@@ -116,7 +116,7 @@ public class ItemScreen extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 cost.getEditText().setText("RATE PER DAY: ₹"+dataSnapshot.getValue(String.class));
-                //do what you want with the email
+
             }
 
             @Override

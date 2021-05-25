@@ -110,7 +110,7 @@ public class PaymentAuth extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 locSet.getEditText().setText("Location of pickup: "+dataSnapshot.getValue(String.class));
                 s[0] = dataSnapshot.getValue(String.class);
-                //do what you want with the email
+
             }
 
             @Override
@@ -123,7 +123,7 @@ public class PaymentAuth extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 date.getEditText().setText("Date of start: "+dataSnapshot.getValue(String.class));
                 s[1] = dataSnapshot.getValue(String.class);
-                //do what you want with the email
+
             }
 
             @Override
@@ -135,7 +135,6 @@ public class PaymentAuth extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Numplate.getEditText().setText("LAST FOUR DIGITS OF NUMBER PLATE: "+dataSnapshot.getValue(String.class));
-                //do what you want with the email
             }
 
             @Override
@@ -149,7 +148,6 @@ public class PaymentAuth extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 x[1]= dataSnapshot.getValue(int.class);
                 date.getEditText().setText(date.getEditText().getText().toString()+" \n[Valid for "+x[1]+" days from this date]");
-                //do what you want with the email
             }
 
             @Override
@@ -172,7 +170,6 @@ public class PaymentAuth extends AppCompatActivity {
             }
         });
 
-//
         notification=findViewById(R.id.notification);
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
             NotificationChannel channel= new NotificationChannel("PayMent","DriveEasy notifications",NotificationManager.IMPORTANCE_HIGH);
@@ -206,13 +203,6 @@ public class PaymentAuth extends AppCompatActivity {
                 builder.setLargeIcon(bitmap);
                 builder.setDefaults(Notification.DEFAULT_ALL);
                 builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
-//                builder.setCategory(NotificationCompat.CATEGORY_MESSAGE);
-                //Intent intent= new Intent(PaymentAuth.this,NotificationActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                //intent.putExtra("message",message);
-                //PendingIntent pendingIntent=PendingIntent.getActivity(PaymentAuth.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                //builder.setContentIntent(pendingIntent);
-
                 NotificationManager notificationManager=(NotificationManager)getSystemService(
                         Context.NOTIFICATION_SERVICE
                 );
@@ -236,14 +226,6 @@ public class PaymentAuth extends AppCompatActivity {
                 .setSubtitle("Verify your payment using a finger print scan")
                 .setNegativeButtonText("Payment Authentication")
                 .build();
-        //handle auth
-//        auth.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

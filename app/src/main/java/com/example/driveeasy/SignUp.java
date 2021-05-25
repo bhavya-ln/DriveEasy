@@ -51,12 +51,19 @@ public  class SignUp extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        rootNode= FirebaseDatabase.getInstance();
-                        reference=rootNode.getReference("Users");
-                        ref=reference.child("+91"+phone.getEditText().getText().toString());
-                        UserHelperClass HelperClass = new UserHelperClass(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString(),phone.getEditText().getText().toString());
-                        createAccount(name.getEditText().getText().toString(),user.getEditText().getText().toString(),pass.getEditText().getText().toString());
-                        ref.setValue(HelperClass);
+                        if(name.getEditText().getText().toString().isEmpty() ||user.getEditText().getText().toString().isEmpty() ||pass.getEditText().getText().toString().isEmpty() ||phone.getEditText().getText().toString().isEmpty())
+                        {
+                            Toast.makeText(com.example.driveeasy.SignUp.this, "One or more fields left blank. Fill all fields to continue.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            rootNode = FirebaseDatabase.getInstance();
+                            reference = rootNode.getReference("Users");
+                            ref = reference.child("+91" + phone.getEditText().getText().toString());
+                            UserHelperClass HelperClass = new UserHelperClass(name.getEditText().getText().toString(), user.getEditText().getText().toString(), pass.getEditText().getText().toString(), phone.getEditText().getText().toString());
+                            createAccount(name.getEditText().getText().toString(), user.getEditText().getText().toString(), pass.getEditText().getText().toString());
+                            ref.setValue(HelperClass);
+                        }
 
 
                     }
@@ -90,7 +97,7 @@ public  class SignUp extends AppCompatActivity {
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
-//                                ref.child(name).removeValue();//removes child since loggin failed
+                                ref.child(name).removeValue();//removes child since loggin failed
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(com.example.driveeasy.SignUp.this, task.getException().toString(),
                                         Toast.LENGTH_SHORT).show();
@@ -117,7 +124,7 @@ public  class SignUp extends AppCompatActivity {
 
                         @Override
                         public void onVerificationFailed(@NonNull FirebaseException e) {
-
+                            user.delete();
                             Toast.makeText(com.example.driveeasy.SignUp.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                             reload();
                         }

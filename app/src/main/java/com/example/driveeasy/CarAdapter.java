@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,23 +53,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
         holder.numplate.setText(car.getNumplate());
         holder.noS.setText(car.getNoS());
         holder.price.setText("Rate per Day: "+car.getPrice());
-        Picasso.with(context).load(car.getImgID()).resize(260, 260).into(holder.imgID);
-//        holder.imgID.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseDatabase rootNode;
-//                DatabaseReference reference,ref;
-//                rootNode= FirebaseDatabase.getInstance();
-//                reference=rootNode.getReference("Users");
-//                ref=reference.child();
-//            }
-//        });
-        //            view = itemView;
-//            view.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                }
-//            });
+        Picasso.with(context).load(car.getImgID()).resize(260, 260).placeholder(R.mipmap.ic_launcher_foreground).into(holder.imgID);
+        Picasso.with(context).setLoggingEnabled(true);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,14 +167,6 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
             type = itemView.findViewById(R.id.type);
             price = itemView.findViewById(R.id.price);
             imgID = itemView.findViewById(R.id.imgID);
-//            view = itemView;
-//            view.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent = new Intent(com.example.driveeasy.CarAdapter.this, ItemScreen.class);
-//                    startActivity(intent);
-//                }
-//            });
 
         }
 

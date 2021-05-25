@@ -8,15 +8,18 @@
         <item
             android:title="Dashboard"
             android:id="@+id/dashboard"
+            android:icon="@android:drawable/ic_menu_my_calendar"
 
             />
     <item
         android:title="Home"
         android:id="@+id/home"
+        android:icon="@android:drawable/ic_dialog_dialer"
         />
     <item
         android:title="Logout"
         android:id="@+id/logout"
+        android:icon="@android:drawable/btn_dialog"
         />
     </group>
 

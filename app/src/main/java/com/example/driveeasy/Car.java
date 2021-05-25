@@ -23,20 +23,11 @@ public class Car {
     {
         return name;
     }
-//    public void setName(String name)
-//    {
-//        this.name = name;
-//    }
 
     public String getNoS()
     {
         return noS;
     }
-//    public void setNos(String Nos)
-//    {
-//        this.Nos = Nos;
-//    }
-
 
 
     public String getNumplate()
@@ -44,24 +35,12 @@ public class Car {
         return numPlate;
     }
 
-//    public void setnumplate(String numplate)
-//    {
-//        this.numplate = numplate;
-//    }
-
-
 
 
     public String getFt()
     {
         return ft;
     }
-//    public void setft(String ft)
-//    {
-//        this.ft = ft;
-//    }
-
-
 
 
 
@@ -70,10 +49,6 @@ public class Car {
         return type;
     }
 
-//    public void setType(String type)
-//    {
-//        this.type = type;
-//    }
     public String getPrice()
     {
         return price;
@@ -83,7 +58,5 @@ public class Car {
     {
         return imgID;
     }
-
-
 
 }

@@ -32,10 +32,26 @@
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:backgroundTint="#161616"
-            android:layout_height="wrap_content"
+            android:backgroundTint="#F99A0D"
+            android:background="#F99A0D"
+            android:layout_height="match_parent"
             android:visibility="gone"/>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="WELCOME"
+            android:textColor="#F99A0D"
+            android:textSize="30dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Enter preferred store location in search bar above!"
+            android:textColor="@color/colorWhite"
+            android:textSize="30dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

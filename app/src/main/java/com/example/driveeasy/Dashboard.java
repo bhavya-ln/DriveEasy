@@ -23,6 +23,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
@@ -33,6 +34,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -46,9 +48,7 @@ public class Dashboard extends AppCompatActivity {
         ActionBarDrawerToggle toggle;
         DrawerLayout drawerLayout;
         Toolbar toolbar;
-        Calendar calendar;
         public Button proceed;
-        TimePicker timePicker;
         ListView listView;
 
         // creating a new array list.
@@ -72,14 +72,6 @@ public class Dashboard extends AppCompatActivity {
             rootNode = FirebaseDatabase.getInstance();
             reference =  rootNode.getReference("Location");
             reference2 =  rootNode.getReference("Users");
-
-
-    //        listView = findViewById(R.id.list);
-    //        coursesArrayList = new ArrayList<String>();
-    //
-    //        // calling a method to get data from
-    //        // Firebase and set data to list view
-    //        initializeListView();
 
             listView = findViewById(R.id.list);
             reference.addChildEventListener(new ChildEventListener() {
@@ -130,6 +122,27 @@ public class Dashboard extends AppCompatActivity {
             MenuItem menuItem = menu.findItem(R.id.search);
             SearchView searchView = (SearchView) menuItem.getActionView();
             searchView.setQueryHint("Enter Location");
+            MenuItemCompat.setOnActionExpandListener(menuItem, new MenuItemCompat.OnActionExpandListener() {
+                @Override
+                public boolean onMenuItemActionExpand(MenuItem item) {
+                    listView.setVisibility(VISIBLE);
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Object listItem = listView.getItemAtPosition(position);
+                            searchView.setQuery(listItem.toString(),true);
+                            s = listItem.toString();
+                        }
+                    });
+                    return true;
+                }
+
+                @Override
+                public boolean onMenuItemActionCollapse(MenuItem item) {
+                    listView.setVisibility(GONE);
+                    return true;
+                }
+            });
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
@@ -140,6 +153,7 @@ public class Dashboard extends AppCompatActivity {
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
+                    s="";
                     listView.setVisibility(VISIBLE);
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
@@ -283,17 +297,6 @@ public class Dashboard extends AppCompatActivity {
 
 
     }
-
-
-
-
-    //        listView = findViewById(R.id.list);
-    //        coursesArrayList = new ArrayList<String>();
-    //
-    //        // calling a method to get data from
-    //        // Firebase and set data to list view
-    //        initializeListView();
-
 
 
         @Override

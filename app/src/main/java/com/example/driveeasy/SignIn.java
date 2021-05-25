@@ -92,20 +92,6 @@ import com.google.firebase.auth.FirebaseUser;
                     });
             // [END sign_in_with_email]
         }
-        private void sendEmailVerification() {
-            // Send verification email
-            // [START send_email_verification]
-            final FirebaseUser user = mAuth.getCurrentUser();
-            user.sendEmailVerification()
-                    .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            // Email sent
-                        }
-                    });
-            // [END send_email_verification]
-        }
-
         private void reload() {
             Intent intent = new Intent(com.example.driveeasy.SignIn.this, com.example.driveeasy.SignIn.class);
             startActivity(intent);

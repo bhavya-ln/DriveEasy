@@ -35,73 +35,21 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
+    //Declaring necessary variables
     RecyclerView recyclerView;
     DatabaseReference reference;
     ArrayList<Car> cars;
     CarAdapter myAdapter;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
-    ListView listView;
-
-    // creating a new array list.
-
-
-    // creating a variable for database reference.
-    FirebaseDatabase rootNode;
-    DatabaseReference refdb;
-
-    ArrayAdapter arrayAdapter;
-    ArrayList<String> arrayList = new ArrayList<>();
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-//        listView = findViewById(R.id.list);
-//        rootNode = FirebaseDatabase.getInstance();
-//        refdb =  rootNode.getReference("CarNames");
-//
-//
-//        //        listView = findViewById(R.id.list);
-//        //        coursesArrayList = new ArrayList<String>();
-//        //
-//        //        // calling a method to get data from
-//        //        // Firebase and set data to list view
-//        //        initializeListView();
-//
-//        listView = findViewById(R.id.list);
-//        refdb.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                String value = snapshot.getValue(String.class);
-//                arrayList.add(value);
-//                arrayAdapter = new ArrayAdapter<String>(com.example.driveeasy.Home.this,android.R.layout.simple_list_item_1,arrayList);
-//                listView.setAdapter(arrayAdapter);
-//            }
-//
-//            @Override
-//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
 
+        //Initialising Recyclerview list for cars
         recyclerView = findViewById(R.id.recylerView);
         reference = FirebaseDatabase.getInstance().getReference("Cars");
         recyclerView.setHasFixedSize(true);
@@ -126,6 +74,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        //Navigation view drawable for home screen
         NavigationView nav_view= (NavigationView)findViewById(R.id.nav_view);
         nav_view.bringToFront();
         drawerLayout=findViewById(R.id.drawer_layout);
@@ -165,6 +114,8 @@ public class Home extends AppCompatActivity {
 
 
     }
+
+    //Implementing sorting using search bar
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -172,6 +123,8 @@ public class Home extends AppCompatActivity {
         MenuItem menuItem = menu.findItem(R.id.searchhome);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Enter Car Name");
+
+        //Listening to search collapse
         MenuItemCompat.setOnActionExpandListener(menuItem, new MenuItemCompat.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
@@ -196,15 +149,15 @@ public class Home extends AppCompatActivity {
                     }
                 }
                 );
-                // Write your code here
                 return true;
             }
         });
+
+        //Listening to keystrokes
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                reload();//put functionality
                 return false;
             }
             @Override
@@ -218,13 +171,10 @@ public class Home extends AppCompatActivity {
         });
         return true;
     }
+
+    //Adding functionality to a menu icon button
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return toggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
-    private void reload() {
-        Intent intent = new Intent(com.example.driveeasy.Home.this, com.example.driveeasy.Home.class);
-        startActivity(intent);
-        finish();
-}
 }

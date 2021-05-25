@@ -5,7 +5,7 @@
     android:id="@+id/ScrollView01"
     android:layout_width="fill_parent"
     android:background="#161616"
-    android:layout_height="fill_parent" >2
+    android:layout_height="fill_parent" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,7 +53,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="Email ID"
             android:outlineProvider="none"
             app:boxCornerRadiusBottomEnd="15dp"
             app:boxCornerRadiusTopEnd="15dp"
@@ -111,7 +111,6 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="15dp"
             android:background="#FAE4C4"
-            android:backgroundTint="@color/teal_700"
             android:text="Sign In"
             android:textColor="#161616"
             app:backgroundTint="#FAE4C4"
@@ -125,7 +124,7 @@
             android:layout_gravity="center"
             android:text="New User? Sign up"
             android:textColor="#161616"
-            app:backgroundTint="#FAE4C4" />.
+            app:backgroundTint="#F99A0D" />
 
 
     </LinearLayout>
