@@ -16,13 +16,16 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.concurrent.TimeUnit;
 
-    public class VerifyOTP extends AppCompatActivity {
+
+public class VerifyOTP extends AppCompatActivity {
         private EditText inputCode1, inputCode2, inputCode3, inputCode4, inputCode5, inputCode6;
         String verificationId;
 
@@ -33,6 +36,8 @@ import com.google.firebase.auth.PhoneAuthProvider;
             setContentView(R.layout.activity_verify_o_t_p);
 
             TextView textMobile=findViewById(R.id.textMobile);
+            TextView ReSend=findViewById(R.id.ReSend);
+            
             textMobile.setText(String.format(
                     "+91-%s",getIntent().getStringExtra("mobile")
             ));
@@ -43,6 +48,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
             inputCode4 = findViewById(R.id.inputCode4);
             inputCode5 = findViewById(R.id.inputCode5);
             inputCode6  = findViewById(R.id.inputCode6);
+            
 
             setupOTPInputs();
 
@@ -102,7 +108,38 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
                 }
             });
+            ReSend.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                            "+91"+getIntent().getStringExtra("mobile"),
+                            60,
+                            TimeUnit.SECONDS,
+                            VerifyOTP.this,
+                            new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+                                @Override
+                                public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
 
+                                }
+
+                                @Override
+                                public void onVerificationFailed(@NonNull FirebaseException e) {
+                                    Toast.makeText(VerifyOTP.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onCodeSent(@NonNull String newverificationID, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                    verificationId = newverificationID;
+                                    Toast.makeText(VerifyOTP.this,"Verification Code Sent",Toast.LENGTH_SHORT).show();
+
+
+                                }
+                            }
+                    );
+
+
+                }
+            });
 
         }
         private void setupOTPInputs(){
@@ -195,6 +232,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
                 }
             });
+            
 
         }
     }

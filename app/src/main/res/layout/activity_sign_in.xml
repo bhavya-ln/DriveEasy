@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScrollView01"
     android:layout_width="fill_parent"
-    android:background="#C3ECFE"
-    android:layout_height="fill_parent" >
+    android:background="#161616"
+    android:layout_height="fill_parent" >2
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+
             android:background="#FFFFFF"
             android:src="@drawable/logof"
             android:transitionName="logo_item" />
@@ -28,11 +29,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif-black"
-            android:text="Welcome "
+            android:text="Welcome!"
             android:textColor="#F99A0D"
             android:textSize="30dp"
-            android:textStyle="italic"
+            android:textStyle="bold"
             android:transitionName="text_item" />
 
         <TextView
@@ -44,27 +46,51 @@
             android:textColor="#F99A0D"
             android:textSize="30dp"
             android:textStyle="italic"
-            android:transitionName="text_item" />
+            android:transitionName="text_item"
+            android:paddingBottom="30dp"/>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username">
+            android:hint="Email"
+            android:outlineProvider="none"
+            app:boxCornerRadiusBottomEnd="15dp"
+            app:boxCornerRadiusTopEnd="15dp"
+            app:boxCornerRadiusBottomStart="15dp"
+            app:boxCornerRadiusTopStart="15dp"
+            app:boxBackgroundMode="outline"
+            app:boxBackgroundColor="#161616"
+            app:boxStrokeColor="#FAE8B1"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="3dp"
+            app:hintTextColor="@color/white"
+            android:layout_marginTop="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/user"
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
-                android:background="#FAE4C4"
-                android:textColor="#FAE8B1" />
+                android:outlineProvider="background"
+                android:textColor="@color/white"
+                android:paddingTop="20dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:boxCornerRadiusBottomEnd="15dp"
+            app:boxCornerRadiusTopEnd="15dp"
+            app:boxCornerRadiusBottomStart="15dp"
+            app:boxCornerRadiusTopStart="15dp"
+            app:boxBackgroundMode="outline"
+            app:boxBackgroundColor="#161616"
+            app:boxStrokeColor="#FAE8B1"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="3dp"
+            app:hintTextColor="@color/white"
             android:hint="Password"
             app:passwordToggleEnabled="true">
 
@@ -72,8 +98,9 @@
                 android:id="@+id/pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FAE4C4"
-                android:inputType="textPassword" />
+                android:outlineProvider="background"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -82,11 +109,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
             android:background="#FAE4C4"
             android:backgroundTint="@color/teal_700"
             android:text="Sign In"
             android:textColor="#161616"
-            app:backgroundTint="#FAE4C4" />
+            app:backgroundTint="#FAE4C4"
+
+            />
 
         <Button
             android:id="@+id/signup"
