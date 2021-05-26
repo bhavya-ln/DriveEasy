@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //Setting animation
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_anim);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_anim);
         logo = findViewById(R.id.logo);
@@ -28,12 +28,14 @@ public class MainActivity extends AppCompatActivity {
 
         logo.setAnimation(topAnim);
         slogan.setAnimation(bottomAnim);
+        //Adding delay
         int DELAY = 2000;
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                //Goes to Sign In page
                 Intent intent = new Intent(MainActivity.this, SignIn.class);
                 startActivity(intent);
                 finish();

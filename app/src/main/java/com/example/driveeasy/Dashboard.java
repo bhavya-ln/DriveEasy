@@ -45,20 +45,21 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 public class Dashboard extends AppCompatActivity {
+
+        //Initialising values
         ActionBarDrawerToggle toggle;
         DrawerLayout drawerLayout;
         Toolbar toolbar;
         public Button proceed;
         ListView listView;
 
-        // creating a new array list.
 
 
         // creating a variable for database reference.
         FirebaseDatabase rootNode;
         DatabaseReference reference,reference2;
 
-
+        //Creating array list
         ArrayAdapter arrayAdapter;
         ArrayList<String> arrayList = new ArrayList<>();
 
@@ -74,6 +75,7 @@ public class Dashboard extends AppCompatActivity {
             reference2 =  rootNode.getReference("Users");
 
             listView = findViewById(R.id.list);
+            //Adds items to listview
             reference.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -114,6 +116,7 @@ public class Dashboard extends AppCompatActivity {
 
 
 
+        //Implementing search function for listview
         String s = "";
         @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
@@ -122,6 +125,7 @@ public class Dashboard extends AppCompatActivity {
             MenuItem menuItem = menu.findItem(R.id.search);
             SearchView searchView = (SearchView) menuItem.getActionView();
             searchView.setQueryHint("Enter Location");
+            //Listens to opening/closing of search bar
             MenuItemCompat.setOnActionExpandListener(menuItem, new MenuItemCompat.OnActionExpandListener() {
                 @Override
                 public boolean onMenuItemActionExpand(MenuItem item) {
@@ -143,6 +147,7 @@ public class Dashboard extends AppCompatActivity {
                     return true;
                 }
             });
+            //listens to text change or submit in search bar
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
@@ -176,6 +181,8 @@ public class Dashboard extends AppCompatActivity {
         @Override
         public void onStart() {
             super.onStart();
+
+            //Initialising variables
             FirebaseUser user;
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
@@ -185,6 +192,8 @@ public class Dashboard extends AppCompatActivity {
             toolbar=findViewById(R.id.toolbar);
             proceed=findViewById(R.id.Proceed);
             setActionBar(toolbar);
+
+            //Navigation Drawable in dashboard
             NavigationView nav_view= (NavigationView)findViewById(R.id.nav_view);
             nav_view.bringToFront();
             drawerLayout=findViewById(R.id.drawer_layout);
@@ -192,9 +201,11 @@ public class Dashboard extends AppCompatActivity {
             drawerLayout.addDrawerListener(toggle);
             toggle.syncState();
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            //Checks if proceed button is clicked
             proceed.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //Updates children in user's database
                     DashboardHelperClass HelperClass = new DashboardHelperClass(formatter.format(calendarView.getDate()),seekBar.getProgress(),s);
                     reference2.child(user.getPhoneNumber()).child("date").setValue(HelperClass.date);
                     reference2.child(user.getPhoneNumber()).child("locSet").setValue(HelperClass.locSet);
@@ -205,7 +216,7 @@ public class Dashboard extends AppCompatActivity {
                     }
                     else
                     {
-
+                        //Goes to Home page
                         Intent intent = new Intent(com.example.driveeasy.Dashboard.this, Home.class);
                         startActivity(intent);
                         finish();
@@ -215,7 +226,7 @@ public class Dashboard extends AppCompatActivity {
 
 
 
-
+            //listens to seakbar changes
             TextView text = findViewById(R.id.text);
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
@@ -303,14 +314,6 @@ public class Dashboard extends AppCompatActivity {
         public boolean onOptionsItemSelected(@NonNull MenuItem item) {
             return toggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
         }
-        private void reload() {
-            Intent intent = new Intent(com.example.driveeasy.Dashboard.this, com.example.driveeasy.Dashboard.class);
-            startActivity(intent);
-            finish();
-
-        }
-
-
     }
 
 

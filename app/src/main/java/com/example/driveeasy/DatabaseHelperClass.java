@@ -1,5 +1,5 @@
 package com.example.driveeasy;
-
+//Database Modifier. Makes new children and fields for easy modification
 public class DatabaseHelperClass {
     String Name, NoS, NumPlate, FT,ImgID,Price;
     public DatabaseHelperClass() {

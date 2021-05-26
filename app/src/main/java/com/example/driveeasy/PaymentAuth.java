@@ -39,7 +39,8 @@ import com.squareup.picasso.Picasso;
 import java.util.concurrent.Executor;
 
 public class PaymentAuth extends AppCompatActivity {
-    private FloatingActionButton back;
+
+    //Initializing
     private Button notification;
     Context context;
     private Executor executor;
@@ -47,7 +48,6 @@ public class PaymentAuth extends AppCompatActivity {
     private BiometricPrompt.PromptInfo promptInfo;
     FirebaseDatabase rootNode;
     DatabaseReference reference,ref;
-    FirebaseUser user;
     FirebaseAuth mAuth;
 
 
@@ -55,6 +55,8 @@ public class PaymentAuth extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_auth);
+
+        //Initializing variables
         mAuth = FirebaseAuth.getInstance();
         ImageView img = findViewById(R.id.imageView);
         TextInputLayout carname = findViewById(R.id.carname);
@@ -63,12 +65,16 @@ public class PaymentAuth extends AppCompatActivity {
         TextInputLayout Numplate = findViewById(R.id.NumberPlateInput);
         TextInputLayout cost = findViewById(R.id.CostInput);
         FirebaseUser user = mAuth.getCurrentUser();
+
+        //Adding logo for notiff
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logof);
+
         rootNode= FirebaseDatabase.getInstance();
         reference=rootNode.getReference("Users");
         ref=reference.child(user.getPhoneNumber());
         final String[] s = new String[4];
 
+        //listens to Order cancels button
         FloatingActionButton back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +86,7 @@ public class PaymentAuth extends AppCompatActivity {
             }
         });
 
+        //Gets values of children from database
         ref.child("selectedCar").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -170,6 +177,7 @@ public class PaymentAuth extends AppCompatActivity {
             }
         });
 
+        //Notification and biometric scan settings
         notification=findViewById(R.id.notification);
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
             NotificationChannel channel= new NotificationChannel("PayMent","DriveEasy notifications",NotificationManager.IMPORTANCE_HIGH);
@@ -220,7 +228,7 @@ public class PaymentAuth extends AppCompatActivity {
                 Toast.makeText(PaymentAuth.this,"Failed Authentication",Toast.LENGTH_LONG);
             }
         });
-        //Setting up titile, description on auth dialog
+        //Setting up title, description on auth dialog
         promptInfo= new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("Biometric Authentication")
                 .setSubtitle("Verify your payment using a finger print scan")

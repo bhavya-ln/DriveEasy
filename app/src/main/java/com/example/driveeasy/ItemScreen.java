@@ -27,15 +27,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class ItemScreen extends AppCompatActivity {
+    //Initializing variable
     Context context;
     ActionBarDrawerToggle toggle;
     DrawerLayout drawerLayout;
     FirebaseDatabase rootNode;
     DatabaseReference reference,ref;
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Initializing variable
         final String[] s = {""};
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_item_screen);
@@ -52,6 +55,7 @@ public class ItemScreen extends AppCompatActivity {
 
         FloatingActionButton buy = findViewById(R.id.Buy);
 
+        //Get data from database
         ref.child("selectedCar").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -126,15 +130,18 @@ public class ItemScreen extends AppCompatActivity {
         });
 
 
-
+        //Listens to cart button
         buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //goes to bill details
                 Intent intent = new Intent(com.example.driveeasy.ItemScreen.this, PaymentAuth.class);
                 startActivity(intent);
                 finish();
             }
         });
+
+        //Setup for Navigation drawable in Item Screen
         NavigationView nav_view= (NavigationView)findViewById(R.id.nav_view);
         nav_view.bringToFront();
         drawerLayout=findViewById(R.id.drawer_layout);

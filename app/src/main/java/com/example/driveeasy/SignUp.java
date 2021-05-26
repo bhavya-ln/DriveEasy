@@ -47,6 +47,7 @@ public  class SignUp extends AppCompatActivity {
             FloatingActionButton back = findViewById(R.id.floatingActionButton);
 
             super.onStart();
+            //Listens to next button
             next.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -61,7 +62,7 @@ public  class SignUp extends AppCompatActivity {
                             reference = rootNode.getReference("Users");
                             ref = reference.child("+91" + phone.getEditText().getText().toString());
                             UserHelperClass HelperClass = new UserHelperClass(name.getEditText().getText().toString(), user.getEditText().getText().toString(), pass.getEditText().getText().toString(), phone.getEditText().getText().toString());
-                            createAccount(name.getEditText().getText().toString(), user.getEditText().getText().toString(), pass.getEditText().getText().toString());
+                            createAccount(phone.getEditText().getText().toString(), user.getEditText().getText().toString(), pass.getEditText().getText().toString());
                             ref.setValue(HelperClass);
                         }
 
@@ -70,6 +71,7 @@ public  class SignUp extends AppCompatActivity {
 
 
             });
+            //Goes back to signin
             back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -81,7 +83,7 @@ public  class SignUp extends AppCompatActivity {
         }
 
 
-        private void createAccount(String name,String email, String password) {
+        private void createAccount(String phone,String email, String password) {
             // [START create_user_with_email]
             Button next=findViewById(R.id.next);
             mAuth.createUserWithEmailAndPassword(email, password)
@@ -97,7 +99,7 @@ public  class SignUp extends AppCompatActivity {
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
-                                ref.child(name).removeValue();//removes child since loggin failed
+                                ref.child("+91"+phone).removeValue();//removes child since login failed
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(com.example.driveeasy.SignUp.this, task.getException().toString(),
                                         Toast.LENGTH_SHORT).show();
@@ -110,7 +112,7 @@ public  class SignUp extends AppCompatActivity {
         }
         private void updateUI(FirebaseUser user) {
             TextInputLayout phone=findViewById(R.id.p);
-
+            //Signing up using phone
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     "+91"+phone.getEditText().getText().toString(),
                     60,
@@ -124,6 +126,7 @@ public  class SignUp extends AppCompatActivity {
 
                         @Override
                         public void onVerificationFailed(@NonNull FirebaseException e) {
+                            //Removes user from auth if authentication fails
                             user.delete();
                             Toast.makeText(com.example.driveeasy.SignUp.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                             reload();
@@ -133,7 +136,7 @@ public  class SignUp extends AppCompatActivity {
                         public void onCodeSent(@NonNull String verificationID, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
 
                             String s = verificationID;
-
+                            //Goes to Verify otp activity
                             Intent intent= new Intent(getApplicationContext(), VerifyOTP.class);
                             intent.putExtra("mobile",phone.getEditText().getText().toString());
                             intent.putExtra("verify",s);
@@ -146,6 +149,7 @@ public  class SignUp extends AppCompatActivity {
 
         }
         private void reload(){
+            //Reloads Screen
             Intent intent = new Intent(com.example.driveeasy.SignUp.this, com.example.driveeasy.SignUp.class);
             startActivity(intent);
             finish();

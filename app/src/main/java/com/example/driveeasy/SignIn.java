@@ -93,6 +93,7 @@ import com.google.firebase.auth.FirebaseUser;
             // [END sign_in_with_email]
         }
         private void reload() {
+            //reloads screen
             Intent intent = new Intent(com.example.driveeasy.SignIn.this, com.example.driveeasy.SignIn.class);
             startActivity(intent);
             finish();
@@ -102,12 +103,14 @@ import com.google.firebase.auth.FirebaseUser;
         private void updateUI(FirebaseUser user) {
             if(user.getPhoneNumber()==null)
             {
+                //goes to otp class
                 Intent intent = new Intent(com.example.driveeasy.SignIn.this, OTP.class);
                 startActivity(intent);
                 finish();
             }
             else
             {
+                //goes to dashboard
                 Intent intent = new Intent(com.example.driveeasy.SignIn.this, Dashboard.class);
                 startActivity(intent);
                 finish();

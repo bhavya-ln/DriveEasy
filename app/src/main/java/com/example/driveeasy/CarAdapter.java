@@ -46,6 +46,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+        //Sets text in card of recycler view
         Car car = cars.get(position);
         holder.name.setText("Model: "+car.getName());
         holder.type.setText(car.getType());
@@ -55,6 +56,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
         holder.price.setText("Rate per Day: "+car.getPrice());
         Picasso.with(context).load(car.getImgID()).resize(260, 260).placeholder(R.mipmap.ic_launcher_foreground).into(holder.imgID);
         Picasso.with(context).setLoggingEnabled(true);
+        //Listens to clicking of card
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +87,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
         return cars.size();
     }
 
+    //returns filtered list
     public Filter getFilter() {
 
         return filter;
@@ -92,12 +95,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
 
     }
 
+    //Filter for cards of recycler view
     private Filter filter = new Filter() {
         @NonNull
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             ArrayList<Car> filteredList  = new ArrayList<>();
-//            cars.clear();
             if(constraint==null||constraint.length()==0)
             {
 
@@ -142,7 +145,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
             return results;
         }
 
-
+        //updates recycler view
         @NonNull
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
@@ -160,6 +163,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.MyViewHolder> {
         public View view;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            //finds id of all button and text fields
             name = itemView.findViewById(R.id.name);
             noS = itemView.findViewById(R.id.seats);
             numplate = itemView.findViewById(R.id.numberplate);

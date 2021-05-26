@@ -52,7 +52,6 @@ public class VerifyOTP extends AppCompatActivity {
 
             setupOTPInputs();
 
-    //        final ProgressBar progressBar=findViewById(R.id.progressBar);
             final Button verOTP=findViewById(R.id.verOTP);
             verificationId=getIntent().getStringExtra("verify");
 
@@ -74,10 +73,8 @@ public class VerifyOTP extends AppCompatActivity {
                             inputCode4.getText().toString()+
                             inputCode5.getText().toString()+
                             inputCode6.getText().toString();
+                    //Checks for validity of entered code
                     if(verificationId!=null){
-
-    //                    progressBar.setVisibility(View.VISIBLE);
-                        //verOTP.setVisibility(View.INVISIBLE);
                         PhoneAuthCredential phoneAuthCredential= PhoneAuthProvider.getCredential(
                                 verificationId,
                                 code
@@ -86,8 +83,6 @@ public class VerifyOTP extends AppCompatActivity {
                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
-    //                                    progressBar.setVisibility(View.GONE);
-                                        //verOTP.setVisibility(View.VISIBLE);
                                         if(task.isSuccessful()){
                                             Intent intent=new Intent(com.example.driveeasy.VerifyOTP.this,Dashboard.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
@@ -102,12 +97,14 @@ public class VerifyOTP extends AppCompatActivity {
                     }
                     else
                     {
+                        //Can be used to catch errors
                         Toast.makeText(com.example.driveeasy.VerifyOTP.this,verificationId,Toast.LENGTH_SHORT).show();
                     }
 
 
                 }
             });
+            //Listens to resend button
             ReSend.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -142,6 +139,7 @@ public class VerifyOTP extends AppCompatActivity {
             });
 
         }
+        //Format for Accepting input
         private void setupOTPInputs(){
             inputCode1.addTextChangedListener(new TextWatcher() {
                 @Override

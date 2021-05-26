@@ -1,5 +1,5 @@
 package com.example.driveeasy;
-
+//Dashboard Database handling
 public class DashboardHelperClass {
     String date, locSet;
     int noD;

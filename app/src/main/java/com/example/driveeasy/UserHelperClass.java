@@ -1,3 +1,4 @@
+//This class is used to handle database for user
 package com.example.driveeasy;
 
 public class UserHelperClass {

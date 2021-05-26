@@ -30,6 +30,7 @@ import java.util.concurrent.TimeUnit;
             Button getOTP=findViewById(R.id.getOTP);
 
             final ProgressBar progressBar=findViewById(R.id.progressBar);
+            //We focus on mobile number signup so logout from email auth
             FirebaseAuth.getInstance().signOut();
             getOTP.setOnClickListener(new View.OnClickListener() {
                 @Override

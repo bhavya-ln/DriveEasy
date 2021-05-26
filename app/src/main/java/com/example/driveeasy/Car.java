@@ -1,5 +1,5 @@
 package com.example.driveeasy;
-
+//This class helps the list building of cars for easy access and updation in recycler view
 public class Car {
 
     private String name;

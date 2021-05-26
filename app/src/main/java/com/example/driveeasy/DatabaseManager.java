@@ -1,7 +1,7 @@
 
 
 package com.example.driveeasy;
-
+//This activity is used to have a dynamic input for database for ease of modification
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
