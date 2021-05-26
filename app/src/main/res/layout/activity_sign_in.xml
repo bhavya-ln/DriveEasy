@@ -71,9 +71,11 @@
                 android:id="@+id/user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Email ID"
                 android:outlineProvider="background"
+                android:paddingTop="20dp"
                 android:textColor="@color/white"
-                android:paddingTop="20dp"/>
+                android:textColorHint="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -98,9 +100,11 @@
                 android:id="@+id/pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Password"
                 android:outlineProvider="background"
                 android:textColor="@color/white"
-                android:layout_marginTop="20dp"/>
+                android:textColorHint="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

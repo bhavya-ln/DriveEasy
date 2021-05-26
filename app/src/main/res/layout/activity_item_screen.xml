@@ -21,6 +21,7 @@
         android:background="#161616"
         android:backgroundTint="#161616"
         app:itemTextColor="#F99A0D"
+        app:itemIconTint="@color/colorWhite"
         app:headerLayout="@layout/header"
         app:menu="@menu/menu" />
 <ScrollView

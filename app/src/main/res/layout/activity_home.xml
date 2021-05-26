@@ -22,6 +22,7 @@
         android:layout_gravity="start"
         android:backgroundTint="#161616"
         app:headerLayout="@layout/header"
+        app:itemIconTint="@color/colorWhite"
         app:itemTextColor="#F99A0D"
         app:menu="@menu/menu" />
     <LinearLayout
