@@ -38,31 +38,49 @@ OTP verification with reference to the database functionality, and finally finis
         2. Implementing animations, navigation view, Email and phone authentication, OTP Authentication, biometric authentication, recycler view.
         3. Implementing widgets such as Image View, Calendar view, Scroll View, Listview, Recyclerview, Scrollview, Constrained and linear layout.
         4. Understood the functioning of real time Firebase database.
+        
+       
+        
+        
+ ## Screenshots        
+<p float = "left">
 
+<!-- ### Main Page: -->
+<img src = "https://user-images.githubusercontent.com/77959565/119697462-d5a4eb80-be6d-11eb-8220-64762d06d794.jpeg" width="250" hspace="10"/>
+<!-- ![Main page](https://user-images.githubusercontent.com/77959565/119697462-d5a4eb80-be6d-11eb-8220-64762d06d794.jpeg ) -->
 
-### Main Page:
-![Main page](https://user-images.githubusercontent.com/77959565/119697462-d5a4eb80-be6d-11eb-8220-64762d06d794.jpeg)
+<!-- ### Sign In -->
+<img src = "https://user-images.githubusercontent.com/77959565/119697994-6b407b00-be6e-11eb-843b-4dfd60c49797.jpeg" width="250" hspace="10"/>
+<!-- ![SignUp](https://user-images.githubusercontent.com/77959565/119697994-6b407b00-be6e-11eb-843b-4dfd60c49797.jpeg)
+ -->
 
-### Sign In
-![SignUp](https://user-images.githubusercontent.com/77959565/119697994-6b407b00-be6e-11eb-843b-4dfd60c49797.jpeg)
+<!-- ### OTP Verification -->
 
+<img src = "https://user-images.githubusercontent.com/77959565/119698663-15200780-be6f-11eb-9c53-fc9b3c90019c.jpeg" width="250" hspace="10"/>
+<!-- ![OTPVerification](https://user-images.githubusercontent.com/77959565/119698663-15200780-be6f-11eb-9c53-fc9b3c90019c.jpeg) -->
+  </p>
+  
+<p float = "left">
+<!-- ### Dashboard -->
+<img src = "https://user-images.githubusercontent.com/77959565/119698848-47316980-be6f-11eb-94c9-c233c35f7915.jpeg" width="250" hspace="10"/>
+<!-- ![Dashboard](https://user-images.githubusercontent.com/77959565/119698848-47316980-be6f-11eb-94c9-c233c35f7915.jpeg) -->
 
-### OTP Verification
-![OTPVerification](https://user-images.githubusercontent.com/77959565/119698663-15200780-be6f-11eb-9c53-fc9b3c90019c.jpeg)
+<!-- ### Navigation -->
+<img src = "https://user-images.githubusercontent.com/77959565/119699117-73e58100-be6f-11eb-8a96-8e4f1a2bb307.jpeg" width="250" hspace="10"/>
+<!-- ![Navigation](https://user-images.githubusercontent.com/77959565/119699117-73e58100-be6f-11eb-8a96-8e4f1a2bb307.jpeg) -->
 
-### Dashboard
-![Dashboard](https://user-images.githubusercontent.com/77959565/119698848-47316980-be6f-11eb-94c9-c233c35f7915.jpeg)
-
-### Navigation
-![Navigation](https://user-images.githubusercontent.com/77959565/119699117-73e58100-be6f-11eb-8a96-8e4f1a2bb307.jpeg)
-
-### Cars
-![Carss](https://user-images.githubusercontent.com/77959565/119699231-8e1f5f00-be6f-11eb-8d98-d5fd21bffebb.jpeg)
-
-### Bill Page
-![BillPage](https://user-images.githubusercontent.com/77959565/119699345-b313d200-be6f-11eb-9265-142f98c519a6.jpeg)
-
-### Payment Authentication
-![PaymentAuth](https://user-images.githubusercontent.com/77959565/119699444-cde64680-be6f-11eb-918a-0994a3d7063f.jpeg)
+<!-- ### Cars -->
+<img src = "https://user-images.githubusercontent.com/77959565/119699231-8e1f5f00-be6f-11eb-8d98-d5fd21bffebb.jpeg" width="250" hspace="10"/>
+<!-- ![Carss](https://user-images.githubusercontent.com/77959565/119699231-8e1f5f00-be6f-11eb-8d98-d5fd21bffebb.jpeg)-->
+  </p>
+<p float = "left">
+<!-- ### Bill Page -->
+<img src = "https://user-images.githubusercontent.com/77959565/119699345-b313d200-be6f-11eb-9265-142f98c519a6.jpeg" width="250" hspace="10"/>
+<!-- ![BillPage](https://user-images.githubusercontent.com/77959565/119699345-b313d200-be6f-11eb-9265-142f98c519a6.jpeg)
+ -->
+<!-- ### Payment Authentication -->
+<img src = "https://user-images.githubusercontent.com/77959565/119699444-cde64680-be6f-11eb-918a-0994a3d7063f.jpeg" width="250" hspace="10"/>
+<!-- ![PaymentAuth](https://user-images.githubusercontent.com/77959565/119699444-cde64680-be6f-11eb-918a-0994a3d7063f.jpeg) -->
+  </p>
 
 
