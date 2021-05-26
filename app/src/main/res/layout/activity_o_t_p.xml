@@ -33,7 +33,7 @@
             android:backgroundTint="#FAE8B1"
             android:hint="Enter your phone number"
             android:inputType="phone"
-            android:textColor="@color/ColourText"
+            android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold" />
 
