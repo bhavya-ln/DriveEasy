@@ -39,8 +39,8 @@ OTP verification with reference to the database functionality, and finally finis
         3. Implementing widgets such as Image View, Calendar view, Scroll View, Listview, Recyclerview, Scrollview, Constrained and linear layout.
         4. Understood the functioning of real time Firebase database.
         
-       
-        
+## Video Demo for app
+Please find the Video link for the demonstration of our app in [Video Demo](VideoDemo.md)
         
  ## Screenshots        
 <p float = "left">
