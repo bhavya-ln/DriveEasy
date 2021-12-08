@@ -29,8 +29,7 @@ OTP verification with reference to the database functionality, and finally finis
 - App debugging
 - UI/UX
 - Getting and commiting information to firebase
-- Teaching(:P)(In short Pranav did most of the things XD)
--  **Pranav did not write this -_-**
+
 
          
 ## Learning Outcome:
